@@ -3,7 +3,7 @@ Please go under edit and edit this file as needed for your project
 # Project Name - ITP
 # Batch - 
 ### Group Leader - IT21027888 Herath.H.M.H.S
-### Member 2 -  IT21045158 Jayasinghe J.M.Y
+### Member 2 -  IT21045158 Jayasinghe J.M.Y (it21045158)
 ### Member 3 -  IT21042560 Jinasena H.D.S.S
 ### Member 4 -  IT21052392 Thawalampola O.D (it21052392)
 ### Member 5 - IT21025976 Nanayakkara S.B
