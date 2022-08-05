@@ -7,7 +7,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 3 -  IT21042560 Jinasena H.D.S.S
 ### Member 4 -  IT21052392 Thawalampola O.D
 ### Member 5 - IT21025976 Nanayakkara S.B
-### Member 6 - 
+### Member 6 - IT21026034 Gunathilake W.M.D.P
 ### Member 7 - 
 ### Member 8 - 
 
