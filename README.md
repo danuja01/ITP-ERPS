@@ -6,7 +6,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 2 -  IT21045158 Jayasinghe J.M.Y
 ### Member 3 -  IT21042560 Jinasena H.D.S.S
 ### Member 4 -  IT21052392 Thawalampola O.D
-### Member 5 - 
+### Member 5 - IT21025976 Nanayakkara S.B
 ### Member 6 - 
 ### Member 7 - 
 ### Member 8 - 
