@@ -3,7 +3,7 @@ Please go under edit and edit this file as needed for your project
 # Project Name - ITP
 # Batch - 
 ### Group Leader - IT21027888 Herath.H.M.H.S
-### Member 2 - 
+### Member 2 -  IT21045158 Jayasinghe J.M.Y
 ### Member 3 - 
 ### Member 4 - 
 ### Member 5 - 
