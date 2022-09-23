@@ -1,17 +1,34 @@
 const express = require('express');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+const degreesRoutes = require('./routes/degrees.routes.js');
+const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
+
+require('dotenv').config();
+
+// app config
 const app = express();
 
-dotenv.config({path: './config.env'});
+// middleware
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("Hello World");
-})
+//routes
+app.use('/api/degrees', degreesRoutes);
+app.use('/api/courseMaterials', courseMaterialsRoutes);
 
-const port = process.env.PORT || 3200;
+// connect to db
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('mongodb connection successful');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+//port
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-})
+  console.log(`Server started on port ${port}`);
+});
