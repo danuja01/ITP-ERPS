@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
-const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
+//const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
+const paymentsRoutes = require('./routes/payments.routes.js');
 
 require('dotenv').config();
 
@@ -14,7 +15,8 @@ app.use(express.json());
 
 //routes
 app.use('/api/degrees', degreesRoutes);
-app.use('/api/courseMaterials', courseMaterialsRoutes);
+app.use('/api/payments', paymentsRoutes);
+//app.use('/api/courseMaterials', courseMaterialsRoutes);
 
 // connect to db
 mongoose
