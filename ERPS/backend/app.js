@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
-const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
 
 require('dotenv').config();
 
@@ -14,7 +13,6 @@ app.use(express.json());
 
 //routes
 app.use('/api/degrees', degreesRoutes);
-app.use('/api/courseMaterials', courseMaterialsRoutes);
 
 // connect to db
 mongoose
