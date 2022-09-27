@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 
 const AdminNav = () => {
   const menus = [
-    { name: 'Dashboard', link: '/', icon: MdOutlineDashboard },
-    { name: 'Degrees', link: '/degrees', icon: GiGraduateCap },
+    { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
+    { name: 'Degrees', link: '/admin/degrees', icon: GiGraduateCap },
     { name: 'Students', link: '/students', icon: IoIosPeople },
     { name: 'Inventory', link: '/inventory', icon: MdInventory },
     { name: 'Food Items', link: '/foods', icon: IoFastFood },
