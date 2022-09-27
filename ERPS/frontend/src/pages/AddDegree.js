@@ -1,16 +1,19 @@
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
+import DegreeForm from '../components/DegreeForm';
+import DegreeFormHeader from '../components/DegreeFormHeader';
 
-const Dashboard = () => {
+const AddDegree = () => {
   return (
     <section className='flex gap-6'>
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <h1>ADMIN DASHBOARD</h1>
+        <DegreeFormHeader />
+        <DegreeForm />
       </div>
     </section>
   );
 };
 
-export default Dashboard;
+export default AddDegree;
