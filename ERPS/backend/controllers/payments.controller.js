@@ -10,19 +10,33 @@ const addPayment = async (req, res) => {
         const paymentDate = Date(req.body.paymentDate);
         const paymentAmount = Number(req.body.paymentAmount);
 
-        try{
-            const payment = await Payment.create({
+        const newPayment = new Payment({
                 paymentID,
                 paymentDescription,
                 paymentCategory,
                 paymentDate,
                 paymentAmount
-        })
+      })
+  
+      newPayment.save().then(()=>{
+          res.json("Payment Added");
+      }).catch((err)=>{
+          console.log(err);
+      })
 
-        return res.status(200).json(payment);
-        } catch (error) {
-            return res.status(500).json({ message: error.message });
-        }
+        // try{
+        //     const payment = await Payment.create({
+        //         paymentID,
+        //         paymentDescription,
+        //         paymentCategory,
+        //         paymentDate,
+        //         paymentAmount
+        // })
+
+        // return res.status(200).json(payment);
+        // } catch (error) {
+        //     return res.status(500).json({ message: error.message });
+        // }
     
   };
 
@@ -43,7 +57,7 @@ const addPayment = async (req, res) => {
  const deletePayment = async (req, res) => {
     let paymentID  = req.params.id;
   
-    const payment = await Payment.findOneAndDelete({ _id: paymentID })
+    await Payment.findByIdAndDelete(paymentID)
   
     .then(() => {
         res.status(200).send({status : "payment deleted"});    
