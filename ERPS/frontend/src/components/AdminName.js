@@ -9,7 +9,7 @@ const AdminName = () => {
           <FiLogOut size={30} className='flex cursor-pointer' />
         </a>
       </div>
-      <div class='w-full border-b border-gray-200 pt-2'></div>
+      <div className='w-full border-b border-gray-200 pt-2'></div>
     </div>
   );
 };
