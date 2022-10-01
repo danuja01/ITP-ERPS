@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+const stream = {
+  type: Array,
+  required: true,
+};
+
 const degreeSchema = new mongoose.Schema({
   degree_name: {
     type: String,
