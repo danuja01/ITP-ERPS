@@ -8,8 +8,6 @@ const {
   updateDegree,
 } = require('../controllers/degrees.controller.js');
 
-// get all degrees
-router.get('/', getDegrees);
 
 // get a single degree
 router.get('/:id', getDegree);
@@ -22,5 +20,8 @@ router.delete('/:id', deleteDegree);
 
 // update degree
 router.patch('/:id', updateDegree);
+
+// get all degrees
+router.get('/', getDegrees);
 
 module.exports = router;

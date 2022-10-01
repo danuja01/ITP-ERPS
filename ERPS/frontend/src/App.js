@@ -13,8 +13,8 @@ function App() {
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/degrees' element={<Degrees />} />
           <Route path='/admin/add-degree' element={<AddDegree />} />
-          <Route path='/Coursem' element={<Coursem />} />
           <Route path='/admin/degree/:id' element={<Degree />} />
+          <Route path='/Coursem' element={<Coursem />} />
         </Routes>
       </BrowserRouter>
     </div>
