@@ -49,7 +49,7 @@ const DegreeDetails = () => {
 
           <div className='flex justify-end'>
             <Link
-              to={'/admin/degree/12'}
+              to={`/admin/degree/update/${degree._id}`}
               class='mr-2  w-30 py-3.5 px-7 text-sm font-medium text-center text-white bg-brown-100 rounded-lg hover:bg-brown-200 focus:ring-4 focus:outline-none focus:ring-brown-300 '
             >
               UPDATE
