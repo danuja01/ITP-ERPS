@@ -9,15 +9,15 @@ const cmSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Duration: {
+  duration: {
     type: Number,
     required: true,
   },
-  Lecturer: {
+  lecturer: {
     type: String,
     required: true,
   },
-  Notice: {
+  notice: {
     type: String,
   },
 });

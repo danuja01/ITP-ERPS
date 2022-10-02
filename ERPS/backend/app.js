@@ -13,8 +13,8 @@ const app = express();
 app.use(express.json());
 
 //routes
+app.use('/api/cmaterials', cmaterialsRoutes);
 app.use('/api/degrees', degreesRoutes);
-app.use('/api/cmaterials', cmaterialsRoutes)
 
 // connect to db
 mongoose

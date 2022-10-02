@@ -1,33 +1,26 @@
-import AdminNav from '../components/AdminNav';
-import CoursemName from '../components/CoursemName';
-import CoursemHeader from '../components/CoursemHeader';
+import { useEffect, useState } from 'react';
 import CoursemCard from '../components/CoursemCard';
-
+import CourseNavbar from '../components/CourseNavbar';
 
 const Coursem = () => {
+  const [cmaterials, setCmaterials] = useState(null);
+  useEffect(() => {
+    const fetchCmaterials = async () => {
+      const response = await fetch('/api/cmaterials');
+      const json = await response.json();
+
+      if (response.ok) {
+        setCmaterials(json);
+      }
+    };
+
+    fetchCmaterials();
+  }, []);
+
   return (
-    <section className='flex gap-6'>
-      <AdminNav />
-      <div className='w-full mr-12'>
-        <CoursemName />
-        <CoursemHeader />
-        <div
-          id='slider'
-          className='mt-5 mx-12 overflow-y-scroll scroll scroll scroll-smooth scrollbar-hide'
-        >
-          <div className='grid grid-cols-1 mx-32'>
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-            <CoursemCard />
-          </div>
-        </div>
+    <section className=''>
+      <div className='mx-32 my-12'>
+        {cmaterials && cmaterials.map((cm) => <CoursemCard cmaterial={cm} />)}
       </div>
     </section>
   );

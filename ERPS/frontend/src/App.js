@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import Degrees from './pages/Degrees';
-import AddDegree from './pages/AddDegree';
 import Coursem from './pages/Coursem';
-import Degree from './pages/Degree';
+import Addcourse from './pages/Addcourse';
+import Managecoursem from './pages/Managecoursem';
 
 function App() {
   return (
@@ -11,10 +10,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/admin/dashboard' element={<Dashboard />} />
-          <Route path='/admin/degrees' element={<Degrees />} />
-          <Route path='/admin/add-degree' element={<AddDegree />} />
-          <Route path='/admin/degree/:id' element={<Degree />} />
-          <Route path='/Coursem' element={<Coursem />} />
+          <Route path='/coursem' element={<Coursem />} />
+          <Route path='/admin/addcourse' element={<Addcourse />} />
+          <Route path='/admin/Managecoursem' element={<Managecoursem />} />
         </Routes>
       </BrowserRouter>
     </div>

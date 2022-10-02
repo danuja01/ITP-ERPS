@@ -1,4 +1,4 @@
-const CourseMaterials = require('../models/degrees.model.js');
+const CourseMaterials = require('../models/courseMaterials.model.js');
 
 //get all cm
 
@@ -31,15 +31,15 @@ const getCourseMaterial = async (req, res) => {
 //add new cm
 
 const addCourseMaterial = async (req, res) => {
-  const { degree_name, z_score, duration, streams, description } = req.body;
+  const { module_name, url, duration, lecturer, notice } = req.body;
 
   try {
     const courseMaterial = await CourseMaterials.create({
-      degree_name,
-      z_score,
+      module_name,
+      url,
       duration,
-      streams,
-      description,
+      lecturer,
+      notice,
     });
 
     return res.status(200).json(courseMaterial);

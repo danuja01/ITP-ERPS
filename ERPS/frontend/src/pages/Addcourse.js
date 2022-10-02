@@ -1,7 +1,7 @@
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
-import DegreeForm from '../components/DegreeForm';
-import DegreeFormHeader from '../components/DegreeFormHeader';
+import CourseForm from '../components/Courseform';
+import CoursemHeader from '../components/CoursemHeader';
 
 const Addcourse = () => {
   return (
@@ -9,8 +9,8 @@ const Addcourse = () => {
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <DegreeFormHeader />
-        <DegreeForm />
+        <CoursemHeader title={'ADD A COURSE MATERIAL'} />
+        <CourseForm />
       </div>
     </section>
   );

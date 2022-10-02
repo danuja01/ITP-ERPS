@@ -6,6 +6,7 @@ import { IoIosPeople } from 'react-icons/io';
 import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
+import { FaBookReader } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 
@@ -13,6 +14,11 @@ const AdminNav = () => {
   const menus = [
     { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
     { name: 'Degrees', link: '/admin/degrees', icon: GiGraduateCap },
+    {
+      name: 'Course Materials',
+      link: '/admin/Managecoursem',
+      icon: FaBookReader,
+    },
     { name: 'Students', link: '/students', icon: IoIosPeople },
     { name: 'Inventory', link: '/inventory', icon: MdInventory },
     { name: 'Food Items', link: '/foods', icon: IoFastFood },

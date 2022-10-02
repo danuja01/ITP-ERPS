@@ -4,7 +4,7 @@ const AdminName = () => {
   return (
     <div className='mt-6 w-full'>
       <div className='text-2xl text-gray-700 grid grid-cols-2  items-center'>
-        <h1 className=''>Good morning, Mr. Danuja! 👋</h1>
+        <h1 className=''>Good morning, Mr. Oshada! 👋</h1>
         <a href='/' className='flex justify-end '>
           <FiLogOut size={30} className='flex cursor-pointer' />
         </a>
