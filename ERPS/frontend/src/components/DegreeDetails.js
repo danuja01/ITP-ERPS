@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 
 const DegreeDetails = () => {
   const { id } = useParams();
@@ -42,11 +42,14 @@ const DegreeDetails = () => {
           <h4 className='text-gray-900 mb-5 leading-9'>
             Duration : {degree.duration} Years
           </h4>
-
-          <p className='text-gray-900 leading-9 mb-9 text-justify'>
-            {degree.description}
-          </p>
-
+          <div
+            id='slider'
+            className='mt-3  overflow-y-scroll scroll  scroll-smooth scrollbar-none'
+          >
+            <p className='text-gray-900 leading-9 mb-9 text-justify'>
+              {degree.description}
+            </p>
+          </div>
           <div className='flex justify-end'>
             <Link
               to={`/admin/degree/update/${degree._id}`}

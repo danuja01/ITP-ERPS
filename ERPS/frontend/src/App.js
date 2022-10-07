@@ -11,6 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/admin/dashboard' element={<Dashboard />} />
+
+          {/* Degrees admin routes */}
           <Route path='/admin/degrees' element={<Degrees />} />
           <Route path='/admin/add-degree' element={<AddDegree />} />
           <Route path='/admin/degree/:id' element={<Degree />} />

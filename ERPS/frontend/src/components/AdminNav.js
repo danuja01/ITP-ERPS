@@ -18,7 +18,7 @@ const AdminNav = () => {
     { name: 'Food Items', link: '/foods', icon: IoFastFood },
     { name: 'Payments', link: '/payments', icon: MdOutlinePayment },
   ];
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <div
       className={`bg-[#4F310E] min-h-screen ${

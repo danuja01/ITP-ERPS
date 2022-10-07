@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var cors = require('cors');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
 
@@ -7,6 +8,9 @@ require('dotenv').config();
 
 // app config
 const app = express();
+
+//cors
+app.use(cors());
 
 // middleware
 app.use(express.json());

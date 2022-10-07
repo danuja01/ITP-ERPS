@@ -1,11 +1,17 @@
+import React, { useState } from 'react';
+
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 import DegreeCard from '../components/DegreeCard';
 import DegreeHeader from '../components/DegreeHeader';
-import useFetch from '../components/useFetch';
+
+import useFetch from '../hooks/useFetch';
 
 const Degrees = () => {
-  const { data, isPending, error } = useFetch('/api/degrees');
+  const { data, isPending, error } = useFetch(
+    'http://localhost:4000/api/degrees'
+  );
+  const [query, setQuery] = useState('');
 
   return (
     <section className='flex gap-6'>
@@ -13,11 +19,27 @@ const Degrees = () => {
       <div className='w-full mr-12'>
         <AdminName />
         <DegreeHeader />
+        <div className='ml-12 mt-2'>
+          <input
+            type='text'
+            placeholder={`search`}
+            onChange={(event) => setQuery(event.target.value)}
+            className='ml-2 h-8 px-2 w-80 rounded-md border-gray-300 focus:outline-brown-100  border p-2'
+            required
+          />
+        </div>
+
         <div
           id='slider'
-          className='mt-5 mx-12 overflow-y-scroll scroll scroll scroll-smooth scrollbar-hide'
+          className='mt-4 mx-10 overflow-y-scroll scroll scroll scroll-smooth scrollbar-hide'
         >
-          {error && <p>{error}</p>}
+          {error && (
+            <div className='flex justify-center my-52'>
+              <p className='text-red-600 text-2xl  border-2 px-10 py-4 border-red-600'>
+                404 : {error}
+              </p>
+            </div>
+          )}
           {isPending && (
             <div className='mt-10 py-4 loading'>
               <div className='snippet' data-title='.dot-pulse'>
@@ -29,9 +51,21 @@ const Degrees = () => {
           )}
           <div className='grid grid-cols-2'>
             {data &&
-              data.map((degree) => (
-                <DegreeCard key={degree.id} degree={degree} />
-              ))}
+              data
+                .filter((degree) => {
+                  if (query === '') {
+                    return degree;
+                  } else if (
+                    degree.degree_name
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  ) {
+                    return degree;
+                  }
+                })
+                .map((degree) => (
+                  <DegreeCard key={degree.id} degree={degree} />
+                ))}
           </div>
         </div>
       </div>

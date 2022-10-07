@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -5,7 +6,7 @@ const DegreeForm = () => {
   const [degree_name, setDegree] = useState('');
   const [z_score, setZscore] = useState('0');
   const [duration, setDuration] = useState(4);
-  const [stream, setStream] = useState([]);
+  const [streams, setStream] = useState([]);
   const [description, setDescription] = useState('');
   const [isPending, setIsPending] = useState(false);
 
@@ -17,29 +18,30 @@ const DegreeForm = () => {
       degree_name,
       z_score,
       duration,
-      stream,
+      streams,
       description,
     };
 
     setIsPending(true);
 
-    setTimeout(() => {
-      fetch('/api/degrees', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(degreeDetails),
-      }).then(() => {
-        console.log('new degree added');
-        console.log(stream);
-        setIsPending(false);
-        navigate('/admin/degrees');
-      });
-    }, 500);
+    axios.post('http://localhost:4000/api/degrees', degreeDetails).then(() => {
+      console.log('new degree added');
+      setIsPending(false);
+      navigate('/admin/degrees');
+    });
+  };
+
+  const handleCheck = (e) => {
+    if (e.target.checked) {
+      setStream([...streams, e.target.value]);
+    } else {
+      setStream(streams.filter((stream) => stream !== e.target.value));
+    }
   };
 
   useEffect(() => {
-    console.log(stream);
-  }, [stream]);
+    console.log(streams);
+  }, [streams]);
 
   return (
     <div className='mx-60'>
@@ -69,7 +71,9 @@ const DegreeForm = () => {
           <input
             type='number'
             value={z_score}
-            onChange={(e) => setZscore(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value < 3.0) setZscore(e.target.value);
+            }}
             placeholder='z-score'
             className='mt-1 w-full h-12 rounded-md border-gray-300 focus:outline-brown-100  border p-2'
             required
@@ -115,9 +119,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Physical Science'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
                 name='pScience'
               />
               <label
@@ -132,9 +134,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Commerce'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
               />
               <label
                 className='form-check-label inline-block text-gray-800 '
@@ -148,9 +148,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Languages'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
               />
               <label
                 className='form-check-label inline-block text-gray-800 '
@@ -164,9 +162,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Arts'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
               />
               <label
                 className='form-check-label inline-block text-gray-800 '
@@ -180,9 +176,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Technology'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
               />
               <label
                 className='form-check-label inline-block text-gray-800 '
@@ -196,9 +190,7 @@ const DegreeForm = () => {
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
                 type='checkbox'
                 value='Biology'
-                onChange={(e) => {
-                  setStream([...stream, e.target.value]);
-                }}
+                onChange={(e) => handleCheck(e)}
               />
               <label
                 className='form-check-label inline-block text-gray-800 '
