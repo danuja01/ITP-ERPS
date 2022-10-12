@@ -52,6 +52,7 @@ const Degrees = () => {
           <div className='grid grid-cols-2'>
             {data &&
               data
+                // eslint-disable-next-line
                 .filter((degree) => {
                   if (query === '') {
                     return degree;

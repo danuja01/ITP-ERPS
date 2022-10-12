@@ -3,6 +3,8 @@ import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 import DegreeDetails from '../components/DegreeDetails';
 
+import { IoMdArrowRoundBack } from 'react-icons/io';
+
 const Degree = () => {
   return (
     <section className='flex gap-6'>
@@ -15,7 +17,7 @@ const Degree = () => {
             to={'/admin/degrees'}
             className='  text-2xl font-bold text-gray-900 '
           >
-            BACK
+            <IoMdArrowRoundBack className='text-gray-900' size={35} />
           </Link>
 
           <div className='mx-36'>

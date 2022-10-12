@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 var cors = require('cors');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
+const studentsRoutes = require('./routes/students.routes.js');
+const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
 
 require('dotenv').config();
 
@@ -15,8 +17,16 @@ app.use(cors());
 // middleware
 app.use(express.json());
 
-//routes
+/********* routes **********/
+
+//degrees
 app.use('/api/degrees', degreesRoutes);
+
+//students
+app.use('/api/students', studentsRoutes);
+
+//applied students
+app.use('/api/applied-students', appliedStudentsRoutes);
 
 // connect to db
 mongoose

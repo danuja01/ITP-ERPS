@@ -6,6 +6,7 @@ import { IoIosPeople } from 'react-icons/io';
 import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
+import { BiMessageAdd } from 'react-icons/bi';
 
 import { Link } from 'react-router-dom';
 
@@ -13,10 +14,11 @@ const AdminNav = () => {
   const menus = [
     { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
     { name: 'Degrees', link: '/admin/degrees', icon: GiGraduateCap },
-    { name: 'Students', link: '/students', icon: IoIosPeople },
-    { name: 'Inventory', link: '/inventory', icon: MdInventory },
-    { name: 'Food Items', link: '/foods', icon: IoFastFood },
-    { name: 'Payments', link: '/payments', icon: MdOutlinePayment },
+    { name: 'Students', link: '/admin/students', icon: IoIosPeople },
+    { name: 'Applications', link: '/admin/applications', icon: BiMessageAdd },
+    { name: 'Inventory', link: '/admin/inventory', icon: MdInventory },
+    { name: 'Food Items', link: '/admin/foods', icon: IoFastFood },
+    { name: 'Payments', link: '/admin/payments', icon: MdOutlinePayment },
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -52,7 +54,7 @@ const AdminNav = () => {
             <h2
               className={`${
                 open && 'hidden'
-              } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:w-fit  `}
+              } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:w-fit z-10 `}
             >
               {menu?.name}
             </h2>

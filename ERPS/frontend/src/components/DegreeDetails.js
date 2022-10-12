@@ -29,7 +29,7 @@ const DegreeDetails = () => {
       )}
       {degree && (
         <div>
-          <h3 class='my-9 text-2xl font-bold tracking-tight text-gray-900 text-center'>
+          <h3 class='mt-11 text-2xl font-bold tracking-tight text-gray-900 text-center'>
             {degree.degree_name}
           </h3>
 
@@ -44,13 +44,13 @@ const DegreeDetails = () => {
           </h4>
           <div
             id='slider'
-            className='mt-3  overflow-y-scroll scroll  scroll-smooth scrollbar-none'
+            className='mt-3 h-64 overflow-y-scroll scroll scroll scroll-smooth scrollbar-none'
           >
             <p className='text-gray-900 leading-9 mb-9 text-justify'>
               {degree.description}
             </p>
           </div>
-          <div className='flex justify-end'>
+          <div className='mt-4 flex justify-end'>
             <Link
               to={`/admin/degree/update/${degree._id}`}
               class='mr-2  w-30 py-3.5 px-7 text-sm font-medium text-center text-white bg-brown-100 rounded-lg hover:bg-brown-200 focus:ring-4 focus:outline-none focus:ring-brown-300 '
@@ -60,7 +60,7 @@ const DegreeDetails = () => {
 
             <button
               onClick={handleDelete}
-              class=' w-30 py-3.5 px-7 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 '
+              class='w-30 py-3.5 px-7 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300'
             >
               DELETE
             </button>
