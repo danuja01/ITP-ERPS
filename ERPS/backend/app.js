@@ -5,6 +5,7 @@ var cors = require('cors');
 const degreesRoutes = require('./routes/degrees.routes.js');
 const studentsRoutes = require('./routes/students.routes.js');
 const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
+const selectedStudents = require('./routes/slected.students.routes.js');
 
 require('dotenv').config();
 
@@ -28,7 +29,10 @@ app.use('/api/students', studentsRoutes);
 //applied students
 app.use('/api/applied-students', appliedStudentsRoutes);
 
-// connect to db
+//selected students
+app.use('/api/selected-students', selectedStudents);
+
+/********** connect to db **********/
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {

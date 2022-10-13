@@ -1,26 +1,22 @@
 import { useState } from 'react';
 import useFetch from '../hooks/useFetch';
+import emailjs from '@emailjs/browser';
+import axios from 'axios';
+import exportFromJSON from 'export-from-json';
 
-const Table = () => {
+import { AiFillFileExcel } from 'react-icons/ai';
+
+const Table = ({ selectedStudents }) => {
+  //fetch data
   const { data, isPending, error } = useFetch(
     'http://localhost:4000/api/applied-students/'
   );
 
+  //set states
   const [preference, setPreference] = useState(0);
-
   const isZscore = [];
-  const tempColClr = '';
 
-  const [isActive, setIsActive] = useState(false);
-
-  const colOnChange = () => {
-    setIsActive((current) => !current);
-
-    setInterval(() => {
-      setIsActive((current) => !current);
-    }, 1000);
-  };
-
+  //handle z-score
   data &&
     data.forEach((data) => {
       // console.log(data.degree[preference].z_score);
@@ -29,9 +25,61 @@ const Table = () => {
       } else {
         isZscore.push('bg-red-100');
       }
-
-      console.log(isZscore);
+      // console.log(isZscore);
     });
+
+  //handle accepts
+  const handleAccept = (mailto, selectedStudent) => {
+    // console.log(e);
+
+    axios
+      .post('http://localhost:4000/api/selected-students', selectedStudent)
+      .then(
+        emailjs
+          .send(
+            'service_na3ahko',
+            'template_6mdust6',
+            mailto,
+            'NEGeKLJA2XemKMAcM'
+          )
+          .then(
+            (result) => {
+              // console.log(mailto._id);
+              handleReject(mailto._id)
+                .then(alert('Student Accepted & Email sent successfully'))
+                .then(window.location.reload())
+                .catch((err) => {
+                  console.log(err);
+                });
+            },
+            (error) => {
+              alert('Email not sent');
+            }
+          )
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //handle rejects
+  const handleReject = (id) => {
+    axios
+      .delete(`http://localhost:4000/api/applied-students/${id}`)
+      .then(window.location.reload())
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //handle csv
+
+  const ExportXLXS = () => {
+    const fileName = 'selected students list';
+    const exportType = 'csv';
+    const data = selectedStudents;
+    exportFromJSON({ data, fileName, exportType });
+  };
 
   return (
     <div className='mx-12 mt-5'>
@@ -53,29 +101,43 @@ const Table = () => {
       )}
       {data && (
         <div>
-          {/* SELECTION MENUE */}
-          <div className='inline-block relative w-64 mb-3'>
-            <select
-              onChange={(event) => setPreference(event.target.value)}
-              className='block appearance-none w-full h-12 bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
-            >
-              <option value={0}>1st Preference</option>
-              <option value={1}>2nd Preference</option>
-              <option value={2}>3rd Preference</option>
-            </select>
-            <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-              <svg
-                className='fill-current h-4 w-4'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 20 20'
+          <div className='flex justify-between items-end'>
+            {/* SELECTION MENUE */}
+            <div className='inline-block  relative w-64 mb-3'>
+              <select
+                onChange={(event) => setPreference(event.target.value)}
+                className='block appearance-none w-full h-12 bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
               >
-                <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
-              </svg>
+                <option value={0}>1st Preference</option>
+                <option value={1}>2nd Preference</option>
+                <option value={2}>3rd Preference</option>
+              </select>
+              <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
+                <svg
+                  className='fill-current h-4 w-4'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 20 20'
+                >
+                  <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
+                </svg>
+              </div>
             </div>
+            {/* END SELECTION MENUE */}
+
+            {/* EXCEL SHEET */}
+
+            <button
+              className='shadow-md bg-green-800 px-4 rounded-md text-white h-9 mb-3 active:bg-green-600'
+              onClick={ExportXLXS}
+            >
+              <AiFillFileExcel className='inline-block pb-1 mr-1' size={20} />
+              Selected Students
+            </button>
           </div>
-          {/* END SELECTION MENUE */}
+
+          {/* TABLE */}
           <table className='table-auto w-full text-left'>
-            <thead className='border-b bg-brown-300 text-white text-sm font-medium'>
+            <thead className='border-b bg-brown-300 text-white text-sm font-medium '>
               <th className='px-6 py-4 w-80'>Index Number</th>
               <th className='px-6 py-4 w-44'>Z-Score</th>
               <th className='px-6 py-4 w-96'>Applied Degree</th>
@@ -97,7 +159,7 @@ const Table = () => {
                       {data.student.z_score}
                     </td>
                     <td
-                      className={`px-6 py-4 ${isActive ? tempColClr : ''}`}
+                      className={`px-6 py-4`}
                       value={data.degree[preference]._id}
                     >
                       {data.degree[preference].degree_name}
@@ -106,12 +168,34 @@ const Table = () => {
                       {data.degree[preference].z_score}
                     </td>
                     <td className='px-6 py-4'>
-                      <button className='bg-green-600 p-2 w-full  rounded-sm text-gray-50 mr-5'>
+                      <button
+                        className='bg-green-600 p-2 w-full  rounded-sm text-gray-50 mr-5'
+                        onClick={(e) => {
+                          const mailto = {
+                            _id: data._id,
+                            user_email: data.student.email,
+                            student_name: data.student.student_name,
+                            degree_name: data.degree[preference].degree_name,
+                          };
+
+                          const selectedStudent = {
+                            student: data.student,
+                            degree: data.degree[preference],
+                          };
+
+                          handleAccept(mailto, selectedStudent);
+                        }}
+                      >
                         ASSIGN
                       </button>
                     </td>
                     <td className='px-1 pr-6 py-4'>
-                      <button className='bg-yellow-500 p-2 w-full rounded-sm text-gray-900 mr-5'>
+                      <button
+                        className='bg-yellow-500 p-2 w-full rounded-sm text-gray-900 mr-5'
+                        onClick={(e) => {
+                          handleReject(data._id);
+                        }}
+                      >
                         REJECT
                       </button>
                     </td>
@@ -120,6 +204,7 @@ const Table = () => {
               })}
             </tbody>
           </table>
+          {/* END TABLE */}
         </div>
       )}
     </div>
