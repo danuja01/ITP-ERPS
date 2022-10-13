@@ -58,8 +58,27 @@ export default function UpdatePayment(){
                 paymentAmount
             }
 
-          
-            await fetch(`http://localhost:3000/api/payments/updatePayment/${params.id}`, {
+            if (!paymentID.trim()) {
+                alert("Please fill Payment ID");
+            } 
+    
+            else if(!paymentDescription.trim()){
+                alert("Please fill Payment description");
+            }
+            else if(!paymentCategory.trim()){
+                alert("Please fill Payment category");
+            }
+    
+            else if(!paymentDate.trim()){
+                alert("Please fill Payment date");
+            }
+    
+            else if(!paymentAmount.trim()){
+                alert("Please fill Payment Amount");
+            }
+            
+            else{
+                await fetch(`http://localhost:3000/api/payments/updatePayment/${params.id}`, {
                 method: "post",
                 body: JSON.stringify(updatePayment),
                 headers: {
@@ -67,7 +86,10 @@ export default function UpdatePayment(){
                 },
             });
   
-            navigate("/");
+            navigate("/payments");
+            }
+          
+            
 
             
         }    
@@ -108,7 +130,7 @@ export default function UpdatePayment(){
             </div>
 
             <div className="form-group">
-                <label htmlFor="amount">NewPayment Amount</label>
+                <label htmlFor="amount">New Payment Amount</label>
                 <input type="number" className="form-control" id="amount" placeholder="Enter correct Payment Amount" onChange={(e) =>{
                     updateAmount(e.target.value);
                 }} />

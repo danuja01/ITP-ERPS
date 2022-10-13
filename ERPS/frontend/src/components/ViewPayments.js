@@ -1,34 +1,11 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
-const Record = (props) => (
-    <tr>
-      <td><center>{props.record.paymentID}</center></td>
-      <td><center>{props.record.paymentDescription}</center></td>
-      <td><center>{props.record.paymentCategory}</center></td>
-      <td><center>{props.record.paymentDate}</center></td>
-      <td><center>{props.record.paymentAmount}</center></td>
-      
-
-      
-      
-      <td>
-      <button class="btn btn-warning"><Link  to={`/updatePayment/${props.record._id}`}>Edit</Link></button>&nbsp;&nbsp;&nbsp;&nbsp;
-      <button class="btn btn-danger"
-          onClick={() => {
-            props.deleteRecord(props.record._id);
-          }}
-        >
-          Delete
-        </button>
-        
-      </td>
-    </tr>
-  );
 
 export default function RecordList() {
     const [records, setRecords] = useState([]);
-  
+    const [search,setsearch] = useState('');
+
     // This method fetches the records from the database.
     useEffect(() => {
       async function getRecords() {
@@ -58,32 +35,37 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
+  let filtered = records.filter(t=>t.paymentCategory ==='Food Payment');
+
+  const totalPrice = filtered.reduce((total,item) =>{
+    return total+parseFloat(item.paymentAmount) ;
+  },0);
+
   
-
-  // This method will map out the records on the table
-  function recordList() {
-    return records.map((record) => {
-      return (
-        <Record
-          record={record}
-          deleteRecord={() => deleteRecord(record._id)}
-          key={record._id}
-        />
-      );
-    });
-  }
-
-
   
   return (
     <div>
 
       <br/>
        <img src="https://www.freewebheaders.com/wp-content/gallery/office-finance/online-business-and-accounting-website-header.jpg" style={{height:"200px",width:"100%"}} class="max-w-full h-auto rounded-lg"/><br/>
-      <center><p style={{fontSize: "45px"}}>View Payments</p></center>
+      <center><p style={{fontSize: "45px"}}>View Payments</p></center><br/>
       
-      <button type="button" class="text-blue-700 hover:text-brown border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-[#b9725d] dark:hover:text-white dark:hover:bg-[#b9725d] dark:focus:ring-[#b9725d]"><a href="/createPayment">Create Payment</a></button><br/><br/>
       
+      
+      <div style={{display : "flex",justifyContent:"space-around"}}>
+        
+        <div>
+          <input
+              className="form-control"
+              type="search"
+              placeholder="Search Payments"
+              name="searchQuery"
+              onChange={(e)=>{setsearch(e.target.value);}} 
+            ></input>
+        </div>
+        <div><button type="button" class="focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#b9725d] "><a href="/createPayment">Create Payment</a></button></div>     
+      </div><br/>
+     
       <table class="table table-bordered">
         <thead>
         <tr class="table-info">
@@ -95,10 +77,60 @@ export default function RecordList() {
             <th><center>Action</center></th>
           </tr>
         </thead>
-        <tbody>{recordList()}</tbody>
+        <tbody>
+          {records.filter(records=>{
+            
+            if (search==""){
+              return records;
+            }
+            else if(records.paymentID.toLowerCase().includes(search.toLowerCase())
+                    ||records.paymentDescription.toLowerCase().includes(search.toLowerCase())
+                    ||records.paymentCategory.toLowerCase().includes(search.toLowerCase())){
+              return records;
+            }
+          })
+          .map((records)=>{
+            return(
+              <tr>
+          
+              <td><center>{records.paymentID}</center></td>
+              <td><center>{records.paymentDescription}</center></td>
+              <td><center>{records.paymentCategory}</center></td>
+              <td><center>{records.paymentDate}</center></td>
+              <td><center>{records.paymentAmount}</center></td>
+            
+              
+              
+          
+      
+
+      
+      
+      <td>
+      <button class="btn btn-warning"><Link  to={`/updatePayment/${records._id}`}>Edit</Link></button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-danger"
+          onClick={() => {
+            deleteRecord(records._id);
+          }}
+        >
+          Delete
+        </button>
+        
+      </td>
+    </tr>
+            )
+
+          })
+
+          }
+        
+        </tbody>
+        
+     
       </table>
       
-      
+      <p>{totalPrice}</p>
     </div>
+    
   );
 }

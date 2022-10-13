@@ -12,7 +12,7 @@ function App() {
         <div className=' flex gap-12'>
           <AdminNav />
           <Routes>
-            <Route path = '/payments' exact element={<ViewPayments />}/>
+            <Route path='/payments' exact element={<ViewPayments/>} />
             <Route path = '/createPayment' exact element={<AddPayment />}/>
             <Route path='/updatePayment/:id' exact element={<UpdatePayment/>} />
             <Route path='/' element={<Dashboard />} />

@@ -51,10 +51,11 @@ function AddPayment(){
         }).catch((err)=>{
             alert(err);
         })  
+        navigate("/payments");
         }
         
 
-        //navigate("/");
+        
     }
 
 
@@ -62,26 +63,26 @@ function AddPayment(){
     return(
         
         <div className="container">
-            <center><p style={{fontSize: "35px"}}>View Payments</p></center><br/>
+            <center><p style={{fontSize: "35px"}}>Create Payment</p></center><br/>
            <form onSubmit={sendData}>
             <fieldset style={{backgroundColor:"#A9CCE3", padding:"30px", borderRadius:"20px"}}>
             <div className="form-group">
                 <label htmlFor="paymentID">Payment ID</label><br/>
-                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="paymentID" placeholder="Enter Payment ID" onChange={(e) =>{
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" id="paymentID" placeholder="Enter Payment ID" onChange={(e) =>{
                     setPaymentID(e.target.value);
                 }} />
                 
             </div>
             <div className="form-group">
                 <label htmlFor="paymentDescription">Payment Description</label><br/>
-                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="paymentDescription" placeholder="Enter Payment Description" onChange={(e) =>{
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" id="paymentDescription" placeholder="Enter Payment Description" onChange={(e) =>{
                     setDescription(e.target.value);
                 }} />
                 
             </div>
             <div className="form-group">
                 <label htmlFor="category">Payment Category</label><br/>
-                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="category" placeholder="Enter Payment Category" onChange={(e) =>{
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" id="category" placeholder="Enter Payment Category" onChange={(e) =>{
                     setCategory(e.target.value);
                 }} />
                 
@@ -89,7 +90,7 @@ function AddPayment(){
 
             <div className="form-group">
                 <label htmlFor="date">Payment Date</label><br/>
-                <input type="Date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="date" placeholder="Enter Payment Date" onChange={(e) =>{
+                <input type="Date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" id="date" placeholder="Enter Payment Date" onChange={(e) =>{
                     setDate(e.target.value);
                 }}  />
                 
@@ -97,7 +98,7 @@ function AddPayment(){
 
             <div className="form-group">
                 <label htmlFor="amount">Payment Amount</label><br/>
-                <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="amount" placeholder="Enter Payment Amount" onChange={(e) =>{
+                <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" id="amount" placeholder="Enter Payment Amount" onChange={(e) =>{
                     setAmount(e.target.value);
                 }} />
                 
