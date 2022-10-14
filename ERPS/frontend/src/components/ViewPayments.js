@@ -35,11 +35,7 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
-  let filtered = records.filter(t=>t.paymentCategory ==='Food Payment');
-
-  const totalPrice = filtered.reduce((total,item) =>{
-    return total+parseFloat(item.paymentAmount) ;
-  },0);
+ 
 
   
   
@@ -58,11 +54,12 @@ export default function RecordList() {
           <input
               className="form-control"
               type="search"
-              placeholder="Search Payments"
+              placeholder="Search for Payments ..."
               name="searchQuery"
               onChange={(e)=>{setsearch(e.target.value);}} 
             ></input>
         </div>
+        <div style={{marginLeft:"auto"}}><button type="button" class="focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#b9725d] "><a href="/summaryPayment">Payment Summary</a></button></div>
         <div><button type="button" class="focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#b9725d] "><a href="/createPayment">Create Payment</a></button></div>     
       </div><br/>
      
@@ -129,7 +126,7 @@ export default function RecordList() {
      
       </table>
       
-      <p>{totalPrice}</p>
+  
     </div>
     
   );

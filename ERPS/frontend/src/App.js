@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import ViewPayments from './components/ViewPayments'
 import UpdatePayment from './components/UpdatePayment'
 import AddPayment from './components/AddPayment'
+import SummaryPayment from './components/SummaryPayments';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path='/payments' exact element={<ViewPayments/>} />
             <Route path = '/createPayment' exact element={<AddPayment />}/>
             <Route path='/updatePayment/:id' exact element={<UpdatePayment/>} />
+            <Route path='/summaryPayment' exact element={<SummaryPayment/>} />
             <Route path='/' element={<Dashboard />} />
           </Routes>
         </div>
