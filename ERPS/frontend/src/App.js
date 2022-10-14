@@ -1,25 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdminNav from './components/AdminNav';
-import Dashboard from './pages/Dashboard';
-import ViewPayments from './components/ViewPayments'
-import UpdatePayment from './components/UpdatePayment'
-import AddPayment from './components/AddPayment'
-import SummaryPayment from './components/SummaryPayments';
+
+import ViewPayments from './pages/ViewPayments';
+import UpdatePayment from './pages/UpdatePayment';
+import AddPayment from './pages/AddPayment';
+import SummaryPayment from './pages/SummaryPayments';
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <div className=' flex gap-12'>
-          <AdminNav />
-          <Routes>
-            <Route path='/payments' exact element={<ViewPayments/>} />
-            <Route path = '/createPayment' exact element={<AddPayment />}/>
-            <Route path='/updatePayment/:id' exact element={<UpdatePayment/>} />
-            <Route path='/summaryPayment' exact element={<SummaryPayment/>} />
-            <Route path='/' element={<Dashboard />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='/payments' exact element={<ViewPayments />} />
+          <Route path='/createPayment' exact element={<AddPayment />} />
+          <Route path='/updatePayment/:id' exact element={<UpdatePayment />} />
+          <Route path='/summaryPayment' exact element={<SummaryPayment />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
