@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
-const foodsRoutes = require('./routes/fooditem.routes.js');
+
 
 //const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
 
@@ -16,7 +16,13 @@ app.use(express.json());
 
 //routes
 app.use('/api/degrees', degreesRoutes);
-app.use('/api/fooditem', foodsRoutes);
+
+const bookRouter = require("./routes/Book.js");
+app.use("/book",bookRouter);
+
+const bookIssue = require("./routes/BookIssue.js");
+app.use("/BookIssue",bookIssue);
+
 //app.use('/api/courseMaterials', courseMaterialsRoutes);
 
 // connect to db
