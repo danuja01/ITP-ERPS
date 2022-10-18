@@ -17,6 +17,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/degrees', degreesRoutes);
+
 app.use('/api/fooditem', foodsRoutes);
 //app.use('/api/courseMaterials', courseMaterialsRoutes);
 
