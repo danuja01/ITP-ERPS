@@ -1,16 +1,38 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 
+//material ui dialog box
+import Dialog from '@material-ui/core/Dialog';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import { useState } from 'react';
+import axios from 'axios';
+
 const DegreeDetails = () => {
   const { id } = useParams();
-  const { data: degree, isPending, error } = useFetch(`/api/degrees/${id}`);
+  const [open, setOpen] = useState(false);
+
+  //handle dialog box open
+  const handleClickToOpen = () => {
+    setOpen(true);
+  };
+
+  //handle dialog box close
+  const handleToClose = () => {
+    setOpen(false);
+  };
+
+  const {
+    data: degree,
+    isPending,
+    error,
+  } = useFetch(`http://localhost:4000/api/degrees/${id}`);
 
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    fetch(`/api/degrees/${degree._id}`, {
-      method: 'DELETE',
-    }).then(() => {
+    axios.delete(`http://localhost:4000/api/degrees/${degree._id}`).then(() => {
       navigate('/admin/degrees');
     });
   };
@@ -59,11 +81,32 @@ const DegreeDetails = () => {
             </Link>
 
             <button
-              onClick={handleDelete}
               class='w-30 py-3.5 px-7 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300'
+              onClick={handleClickToOpen}
             >
               DELETE
             </button>
+            <Dialog open={open} onClose={handleToClose}>
+              <DialogContent>
+                <DialogContentText>
+                  Are you sure you want to continue?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <button
+                  className='text-green-400 pr-2 mb-2 text-sm rounded-md'
+                  onClick={handleDelete}
+                >
+                  CONFIRM
+                </button>
+                <button
+                  className='  text-red-400  pr-4 mb-2 text-sm rounded-md'
+                  onClick={handleToClose}
+                >
+                  CANCEL
+                </button>
+              </DialogActions>
+            </Dialog>
           </div>
         </div>
       )}

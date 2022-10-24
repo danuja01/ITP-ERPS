@@ -14,7 +14,11 @@ const UpdateDegreeForm = () => {
 
   const navigate = useNavigate();
 
-  const { data: degree, isPending, error } = useFetch(`/api/degrees/${id}`);
+  const {
+    data: degree,
+    isPending,
+    error,
+  } = useFetch(`http://localhost:4000/api/degrees/${id}`);
 
   useEffect(() => {
     if (degree) {
@@ -47,7 +51,7 @@ const UpdateDegreeForm = () => {
     axios
       .patch(`http://localhost:4000/api/degrees/${degree._id}`, degreeDetails)
       .then(() => {
-        console.log(' degree updated');
+        console.log('degree updated');
         navigate(`/admin/degree/${degree._id}`);
       });
   };
@@ -107,7 +111,7 @@ const UpdateDegreeForm = () => {
               <select
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
-                className='block appearance-none w-full h-12 shadow-none bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
+                className='block appearance-none w-full h-12 bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
               >
                 <option value={2}>2 Years</option>
                 <option value={3}>3 Years</option>

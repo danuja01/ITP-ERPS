@@ -2,33 +2,75 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { MdOutlineReportProblem } from 'react-icons/md';
+
+//material ui dialog box
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+
 const DegreeForm = () => {
+  //fetch data
   const [degree_name, setDegree] = useState('');
-  const [z_score, setZscore] = useState('0');
-  const [duration, setDuration] = useState(4);
+  const [z_score, setZscore] = useState('');
+  const [duration, setDuration] = useState(0);
   const [streams, setStream] = useState([]);
   const [description, setDescription] = useState('');
+
+  //set states
   const [isPending, setIsPending] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
+  //handle dialog box close
+  const handleToClose = () => {
+    setOpen(false);
+  };
+
+  //handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    const degreeDetails = {
-      degree_name,
-      z_score,
-      duration,
-      streams,
-      description,
-    };
+    if (
+      degree_name === '' ||
+      z_score === '' ||
+      duration === 0 ||
+      streams.length === 0 ||
+      description === ''
+    ) {
+      setIsEmpty(true);
+      setOpen(true);
+      setError('Please fill all the required fields');
+    } else if (z_score > 3.0) {
+      setOpen(true);
+      setError('Please enter a valid z-score ');
+    } else {
+      const degreeDetails = {
+        degree_name,
+        z_score,
+        duration,
+        streams,
+        description,
+      };
 
-    setIsPending(true);
+      setIsPending(true);
 
-    axios.post('http://localhost:4000/api/degrees', degreeDetails).then(() => {
-      console.log('new degree added');
-      setIsPending(false);
-      navigate('/admin/degrees');
-    });
+      setTimeout(() => {
+        axios
+          .post('http://localhost:4000/api/degrees', degreeDetails)
+          .then(() => {
+            console.log('new degree added');
+            setIsPending(false);
+            navigate('/admin/degrees');
+          })
+          .catch((err) => {
+            setError(err.response.data.message);
+            setIsPending(false);
+          });
+      }, 1000);
+    }
   };
 
   const handleCheck = (e) => {
@@ -44,13 +86,41 @@ const DegreeForm = () => {
   }, [streams]);
 
   return (
-    <div className='mx-60'>
+    <div className='mx-60 pt-1'>
+      {error && (
+        <Dialog open={open} onClose={handleToClose}>
+          <DialogContent>
+            <p>
+              <MdOutlineReportProblem
+                className='inline-flex mb-1 mr-2'
+                color='#8B8000'
+              />
+              {error}!
+            </p>
+          </DialogContent>
+          <DialogActions>
+            <button
+              className='  text-red-600  pr-4 mb-2 text-sm rounded-md'
+              onClick={handleToClose}
+            >
+              CLOSE
+            </button>
+          </DialogActions>
+        </Dialog>
+      )}
       <form onSubmit={handleSubmit}>
-        <div className='px-4 py-5'>
+        <div className='px-4 pt-1 pb-5'>
           <label
             htmlFor='degree'
             className='block text-sm font-medium text-gray-700'
           >
+            <i
+              className={`inline float-left mr-2  ${
+                isEmpty && degree_name === '' ? 'text-red-600' : ''
+              }`}
+            >
+              *
+            </i>
             Degree
           </label>
           <input
@@ -58,39 +128,71 @@ const DegreeForm = () => {
             value={degree_name}
             onChange={(e) => setDegree(e.target.value)}
             placeholder='Add a Degree Program'
-            className='mt-1 w-full h-12 rounded-md border-gray-300 focus:outline-brown-100  border p-2'
-            required
+            className={`mt-1 w-full h-12 rounded-md focus:outline-brown-100  border p-2 ${
+              degree_name === '' && isEmpty
+                ? 'border-red-600'
+                : 'border-gray-300'
+            }`}
+            // required
           />
 
           <label
             htmlFor='z-score'
             className='block text-sm font-medium text-gray-700 mt-6'
           >
+            <i
+              className={`inline float-left mr-2  ${
+                isEmpty && z_score === '' ? 'text-red-600' : ''
+              }`}
+            >
+              *
+            </i>
             Maximum z-score
           </label>
           <input
             type='number'
             value={z_score}
             onChange={(e) => {
-              if (e.target.value < 3.0) setZscore(e.target.value);
+              setZscore(e.target.value);
             }}
             placeholder='z-score'
-            className='mt-1 w-full h-12 rounded-md border-gray-300 focus:outline-brown-100  border p-2'
-            required
+            className={`mt-1 w-full h-12 rounded-md focus:outline-brown-100  border p-2 ${
+              z_score === '' && isEmpty ? 'border-red-600' : 'border-gray-300'
+            }`}
+            // required
           />
+          <div className='h-2'>
+            {z_score > 3 && (
+              <i className='text-xs mt-1 text-red-600'>
+                z-score should be less than 3
+              </i>
+            )}
+          </div>
 
           <label
             htmlFor='duration'
-            className='block text-sm font-medium text-gray-700 mt-6'
+            className='block text-sm font-medium text-gray-700 mt-5'
           >
+            <i
+              className={`inline float-left mr-2  ${
+                isEmpty && duration === 0 ? 'text-red-600' : ''
+              }`}
+            >
+              *
+            </i>
             Course Duration :
           </label>
           <div className='inline-block relative w-64 mt-1'>
             <select
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-              className='block appearance-none w-full h-12 shadow-none bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
+              className={`block appearance-none w-full h-12 bg-gray-50 border hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline  ${
+                duration === 0 && isEmpty ? 'border-red-600' : 'border-gray-300'
+              }`}
             >
+              <option value={0} disabled>
+                Select Duration
+              </option>
               <option value={2}>2 Years</option>
               <option value={3}>3 Years</option>
               <option value={4}>4 Years</option>
@@ -110,7 +212,21 @@ const DegreeForm = () => {
             htmlFor='streams'
             className='block text-sm font-medium text-gray-700 mt-6'
           >
+            <i
+              className={`inline float-left mr-2  ${
+                isEmpty && streams.length === 0 ? 'text-red-600' : ''
+              }`}
+            >
+              *
+            </i>
             Subject Streams :
+            {isEmpty && streams.length === 0 ? (
+              <p className='inline ml-2 text-xs  text-red-600'>
+                {'(required)'}
+              </p>
+            ) : (
+              ''
+            )}
           </label>
 
           <div className='grid justify-center grid-cols-3'>
@@ -205,11 +321,18 @@ const DegreeForm = () => {
             htmlFor='description'
             className='block text-sm font-medium text-gray-700 mt-4'
           >
+            <i
+              className={`inline float-left mr-2  ${
+                isEmpty && description === '' ? 'text-red-600' : ''
+              }`}
+            >
+              *
+            </i>
             Degree Description :
           </label>
 
           <textarea
-            className='
+            className={`
         form-control
         mt-1
         block
@@ -220,13 +343,14 @@ const DegreeForm = () => {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
-        border border-solid border-gray-300
+        border border-solid
         rounded
         transition
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-brown-100 focus:border-2 focus:outline-none
-      '
+        ${description === '' && isEmpty ? 'border-red-600' : 'border-gray-300'}
+      `}
             rows='3'
             placeholder='Description'
             name='description'
@@ -248,7 +372,7 @@ const DegreeForm = () => {
             {isPending && (
               <button
                 type='submit'
-                className=' mt-6   rounded-md border border-transparent bg-brown-100 py-2 px-7 text-sm font-medium text-white shadow-sm hover:bg-brown-200 focus:outline-none focus:ring-2 focus:ring-brown-200 focus:ring-offset-2'
+                className=' mt-6   rounded-md border border-transparent bg-brown-500 py-2 px-7 text-sm font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-brown-200 focus:ring-offset-2'
                 disabled
               >
                 Loading...

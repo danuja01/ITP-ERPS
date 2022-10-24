@@ -6,6 +6,7 @@ import Degree from './pages/Degree';
 import UpdateDegree from './pages/UpdateDegree';
 import NotFound from './pages/NotFound';
 import Applications from './pages/Applications';
+import Test from './pages/Test';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
 
           {/* Students Applications admin routes */}
           <Route path='/admin/applications' element={<Applications />} />
+
+          {/* Test path */}
+          <Route path='/admin/test' element={<Test />} />
 
           {/* 404 page */}
           <Route path='*' element={<NotFound />} />

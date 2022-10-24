@@ -3,8 +3,13 @@ import useFetch from '../hooks/useFetch';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import exportFromJSON from 'export-from-json';
-
 import { AiFillFileExcel } from 'react-icons/ai';
+
+//material ui dialog box
+import Dialog from '@material-ui/core/Dialog';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 
 const Table = ({ selectedStudents }) => {
   //fetch data
@@ -14,7 +19,23 @@ const Table = ({ selectedStudents }) => {
 
   //set states
   const [preference, setPreference] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [mailto, setMailto] = useState({});
+  const [selectedStudent, setSelectedStudent] = useState({});
+  const [studentId, setStudentId] = useState('');
+  const [dialogBox, setDialogBox] = useState('');
+  const [confirming, setConfirming] = useState(false);
   const isZscore = [];
+
+  //handle dialog box open
+  const handleClickToOpen = () => {
+    setOpen(true);
+  };
+
+  //handle dialog box close
+  const handleToClose = () => {
+    setOpen(false);
+  };
 
   //handle z-score
   data &&
@@ -31,7 +52,7 @@ const Table = ({ selectedStudents }) => {
   //handle accepts
   const handleAccept = (mailto, selectedStudent) => {
     // console.log(e);
-
+    setConfirming(true);
     axios
       .post('http://localhost:4000/api/selected-students', selectedStudent)
       .then(
@@ -44,7 +65,7 @@ const Table = ({ selectedStudents }) => {
           )
           .then(
             (result) => {
-              // console.log(mailto._id);
+              setConfirming(false);
               handleReject(mailto._id)
                 .then(alert('Student Accepted & Email sent successfully'))
                 .then(window.location.reload())
@@ -106,7 +127,7 @@ const Table = ({ selectedStudents }) => {
             <div className='inline-block  relative w-64 mb-3'>
               <select
                 onChange={(event) => setPreference(event.target.value)}
-                className='block appearance-none w-full h-12 bg-gray-50 border border-gray-300 hover:border-brown-100 hover:border-2 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
+                className='block appearance-none w-full  bg-gray-50 border border-gray-300 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
               >
                 <option value={0}>1st Preference</option>
                 <option value={1}>2nd Preference</option>
@@ -171,19 +192,20 @@ const Table = ({ selectedStudents }) => {
                       <button
                         className='bg-green-600 p-2 w-full  rounded-sm text-gray-50 mr-5'
                         onClick={(e) => {
-                          const mailto = {
+                          setDialogBox('assign');
+                          setMailto({
                             _id: data._id,
                             user_email: data.student.email,
                             student_name: data.student.student_name,
                             degree_name: data.degree[preference].degree_name,
-                          };
+                          });
 
-                          const selectedStudent = {
+                          setSelectedStudent({
                             student: data.student,
                             degree: data.degree[preference],
-                          };
+                          });
 
-                          handleAccept(mailto, selectedStudent);
+                          handleClickToOpen();
                         }}
                       >
                         ASSIGN
@@ -191,9 +213,11 @@ const Table = ({ selectedStudents }) => {
                     </td>
                     <td className='px-1 pr-6 py-4'>
                       <button
-                        className='bg-yellow-500 p-2 w-full rounded-sm text-gray-900 mr-5'
+                        className='bg-red-500 p-2 w-full rounded-sm text-white mr-5'
                         onClick={(e) => {
-                          handleReject(data._id);
+                          setDialogBox('reject');
+                          setStudentId(data._id);
+                          handleClickToOpen();
                         }}
                       >
                         REJECT
@@ -207,6 +231,44 @@ const Table = ({ selectedStudents }) => {
           {/* END TABLE */}
         </div>
       )}
+
+      <Dialog open={open} onClose={handleToClose}>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to continue?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          {!confirming && (
+            <button
+              className='text-green-400 pr-2 mb-2 text-sm rounded-md'
+              onClick={(e) => {
+                if (dialogBox === 'assign') {
+                  handleAccept(mailto, selectedStudent);
+                } else {
+                  handleReject(studentId);
+                }
+              }}
+            >
+              CONFIRM
+            </button>
+          )}
+          {confirming && (
+            <button
+              disabled={true}
+              className='text-green-800 pr-2 mb-2 text-sm rounded-md'
+            >
+              CONFIRMING...
+            </button>
+          )}
+          <button
+            className='  text-red-400  pr-4 mb-2 text-sm rounded-md'
+            onClick={handleToClose}
+          >
+            CANCEL
+          </button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
