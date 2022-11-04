@@ -27,13 +27,13 @@ function AddPayment() {
       alert('Please fill Payment ID');
     } else if (!paymentDescription.trim()) {
       alert('Please fill Payment description');
-    } else if (!paymentCategory.trim()) {
-      alert('Please fill Payment category');
+    
     } else if (!paymentDate.trim()) {
       alert('Please fill Payment date');
     } else if (!paymentAmount.trim()) {
       alert('Please fill Payment Amount');
     } else {
+      
       axios
         .post('http://localhost:4000/api/payments/addPayment', newPayment)
         .then(() => {
@@ -42,7 +42,7 @@ function AddPayment() {
         .catch((err) => {
           alert(err);
         });
-      navigate('/payments');
+      navigate('../admin/payments');
     }
   }
 
@@ -58,11 +58,11 @@ function AddPayment() {
           <fieldset
             style={{
               backgroundColor: '#A9CCE3',
-              padding: '30px',
+              padding: '45px',
               borderRadius: '20px',
             }}
           >
-            <div className='form-group'>
+            <div class="mb-6">
               <label htmlFor='paymentID'>Payment ID</label>
               <br />
               <input
@@ -75,7 +75,7 @@ function AddPayment() {
                 }}
               />
             </div>
-            <div className='form-group'>
+            <div class="mb-6">
               <label htmlFor='paymentDescription'>Payment Description</label>
               <br />
               <input
@@ -88,21 +88,24 @@ function AddPayment() {
                 }}
               />
             </div>
-            <div className='form-group'>
+            <div class="mb-6">
               <label htmlFor='category'>Payment Category</label>
+              
               <br />
-              <input
-                type='text'
-                class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                id='category'
-                placeholder='Enter Payment Category'
-                onChange={(e) => {
-                  setCategory(e.target.value);
-                }}
-              />
+              <select onChange={(e) => {
+                  setCategory(e.target.value);}}
+                  class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#E8E8E8] dark:border-gray-600 dark:placeholder-[#606060] dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500' style={{color:'#413F42'}}>
+                  <option value="" disabled selected hidden>Select Payment Category...</option>
+                  <option value={"Food Payment"} >Food Payment</option>
+                  <option value={"Salary Payment"}>Salary Payment</option>
+                  <option value={"Inventory Payment"}>Inventory Payment</option>
+                  <option value={"Library Payment"}>Library Payment</option>
+                  <option value={"Bursery Payment"}>Bursery Payment</option>
+                  <option value={"External Payment"}>External Payment</option>
+                </select>
             </div>
 
-            <div className='form-group'>
+            <div class="mb-6">
               <label htmlFor='date'>Payment Date</label>
               <br />
               <input
@@ -116,7 +119,7 @@ function AddPayment() {
               />
             </div>
 
-            <div className='form-group'>
+            <div class="mb-6">
               <label htmlFor='amount'>Payment Amount</label>
               <br />
               <input
@@ -139,7 +142,7 @@ function AddPayment() {
               Submit
             </button>
             <button class='text-white bg-white-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-[#0277BD] dark:hover:bg-[#1565C0] focus:outline-none dark:focus:ring-blue-800'>
-              <a href='/payments'>Cancel</a>
+              <a href='/admin/payments'>Cancel</a>
             </button>
           </center>
         </form>

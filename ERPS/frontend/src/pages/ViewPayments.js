@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import AdminNav from '../components/AdminNav';
+import {DownloadTableExcel} from 'react-export-table-to-excel'
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
@@ -35,8 +36,12 @@ export default function RecordList() {
     const newRecords = records.filter((el) => el._id !== id);
     setRecords(newRecords);
   }
+  
+  const paymentsRef = useRef(null)
 
   return (
+    
+
     <section className='flex gap-6'>
       <AdminNav />
       <div className='w-full mr-12'>
@@ -65,44 +70,56 @@ export default function RecordList() {
               }}
             ></input>
           </div>
+          
           <div style={{ marginLeft: 'auto' }}>
             <button
               type='button'
-              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#b9725d] '
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#BB8760] '
             >
               <a href='/summaryPayment'>Payment Summary</a>
             </button>
           </div>
           <div>
+            <DownloadTableExcel
+            filename='payments table'
+            sheet='payments'
+            currentTableRef={paymentsRef.current}>
+              <button type='button'
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#B85C38] '>
+              Download Report</button>
+            </DownloadTableExcel>
+          </div>
+          <div>
             <button
               type='button'
-              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#b9725d] '
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#753422] '
             >
               <a href='/createPayment'>Create Payment</a>
             </button>
           </div>
+          
         </div>
         <br />
 
-        <table class='table table-bordered'>
+        <table ref={paymentsRef} style={{margin:"25px 0",boxShadow:"0 0 20px rgba(0, 0, 0, 0.15),", border:"1px solid black",width:"100%"}}>
           <thead>
             <tr class='table-info'>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Payment ID</center>
               </th>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Payment Description</center>
               </th>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Payment Category</center>
               </th>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Payment Date</center>
               </th>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Payment Amount</center>
               </th>
-              <th>
+              <th style={{border: "1px solid", padding:"15px 50px", backgroundColor:"lightblue"}}>
                 <center>Action</center>
               </th>
             </tr>
@@ -129,29 +146,28 @@ export default function RecordList() {
               .map((records) => {
                 return (
                   <tr>
-                    <td>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
                       <center>{records.paymentID}</center>
                     </td>
-                    <td>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
                       <center>{records.paymentDescription}</center>
                     </td>
-                    <td>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
                       <center>{records.paymentCategory}</center>
                     </td>
-                    <td>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
                       <center>{records.paymentDate}</center>
                     </td>
-                    <td>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
                       <center>{records.paymentAmount}</center>
                     </td>
 
-                    <td>
-                      <button class='btn btn-warning'>
+                    <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
+                      <button style={{padding:"10px 25px",fontWeight:"500",boxSizing:"border-box"}} class="focus:outline-none text-gray-600 bg-yellow-400 hover:bg 'FFB200' focus:ring-4 focus:'FFB200' font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:'FFB200'">
                         <Link to={`/updatePayment/${records._id}`}>Edit</Link>
                       </button>
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      <button
-                        class='btn btn-danger'
+                      <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         onClick={() => {
                           deleteRecord(records._id);
                         }}

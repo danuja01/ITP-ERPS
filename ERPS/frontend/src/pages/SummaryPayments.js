@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AdminNav from '../components/AdminNav';
+import { PieChart } from 'react-minimal-pie-chart';
 
 export default function Summary() {
+  
   const [payments, setPayments] = useState([]);
   useEffect(() => {
     async function getPayments() {
@@ -21,6 +22,7 @@ export default function Summary() {
     }
 
     getPayments();
+    
 
     return;
   }, [payments.length]);
@@ -74,8 +76,10 @@ export default function Summary() {
   const totalAmount = payments.reduce((total, item) => {
     return total + parseFloat(item.paymentAmount);
   }, 0);
+  
 
   return (
+    
     <section className='flex'>
       <AdminNav />
       <div
@@ -85,12 +89,14 @@ export default function Summary() {
           backgroundPosition: 'center',
           width: '100%',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          opacity: '0.9',
+          backgroundSize: 'cover'
+          
+      
         }}
       >
         <div>
           <br />
+          
 
           <center>
             <p style={{ fontSize: '45px' }}>Summary of Payments</p>
@@ -101,7 +107,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-300 dark:text-green-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -123,7 +129,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-300 dark:text-green-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -145,7 +151,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-300 dark:text-green-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -167,7 +173,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -189,7 +195,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -211,7 +217,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -233,7 +239,7 @@ export default function Summary() {
               class='p-3 mb-1 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-400 dark:text-red-50'
               role='alert'
               style={{
-                padding: '5px',
+                padding: '15px',
                 borderRadius: '20px',
                 width: '85%',
                 display: 'flex',
@@ -250,8 +256,36 @@ export default function Summary() {
             </fieldset>
             <br />
           </center>
+          <PieChart
+  data={[
+    { title: 'Library Payment', value: libraryTotal , color:'orange'},
+    { title: 'Food Payment', value: foodTotal , color:'red'},
+    { title: 'Inventory Payment', value:inventoryTotal,  color:'green'},
+    { title: 'Salary Payment', value: salaryTotal, color:'blue'},
+    { title: 'Bursey Payment', value: burseryTotal,color:'#ed8f1c' },
+    { title: 'External Payment', value: externalTotal,color:'purple' }
+  ]}
+  radius={25}
+  center={[100,30]}
+  viewBoxSize={[200,55]}
+  paddingAngle={0.5}
+  lengthAngle={360}   
+  startAngle={0}
+  
+ 
+  label={(data) => data.dataEntry.title}
+              labelPosition={100.1}
+              
+              labelStyle={{
+                fontSize: "3px",
+                fontColor: "FFFFFA",
+                fontWeight: "400",
+              }}
+/>;
         </div>
       </div>
     </section>
+    
   );
+  
 }

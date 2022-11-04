@@ -10,7 +10,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path='/payments' exact element={<ViewPayments />} />
+          <Route path='admin/payments' exact element={<ViewPayments />} />
           <Route path='/createPayment' exact element={<AddPayment />} />
           <Route path='/updatePayment/:id' exact element={<UpdatePayment />} />
           <Route path='/summaryPayment' exact element={<SummaryPayment />} />

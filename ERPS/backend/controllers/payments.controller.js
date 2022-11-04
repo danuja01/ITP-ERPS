@@ -24,19 +24,6 @@ const addPayment = async (req, res) => {
           console.log(err);
       })
 
-        // try{
-        //     const payment = await Payment.create({
-        //         paymentID,
-        //         paymentDescription,
-        //         paymentCategory,
-        //         paymentDate,
-        //         paymentAmount
-        // })
-
-        // return res.status(200).json(payment);
-        // } catch (error) {
-        //     return res.status(500).json({ message: error.message });
-        // }
     
   };
 
@@ -105,11 +92,11 @@ const updatePayment = async (req, res) => {
 
 
 
-
   module.exports = {
     addPayment,
     getPayments,
     deletePayment,
     getPayment,
-    updatePayment
+    updatePayment,
+    
   };
