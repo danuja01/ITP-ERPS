@@ -265,10 +265,10 @@ export default function Summary() {
     { title: 'Bursey Payment', value: burseryTotal,color:'#ed8f1c' },
     { title: 'External Payment', value: externalTotal,color:'purple' }
   ]}
-  radius={25}
+  radius={20}
   center={[100,30]}
   viewBoxSize={[200,55]}
-  paddingAngle={0.5}
+  paddingAngle={0.1}
   lengthAngle={360}   
   startAngle={0}
   

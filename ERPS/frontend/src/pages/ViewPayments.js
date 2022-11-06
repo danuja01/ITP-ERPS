@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import AdminNav from '../components/AdminNav';
 import {DownloadTableExcel} from 'react-export-table-to-excel'
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
@@ -39,6 +41,49 @@ export default function RecordList() {
   
   const paymentsRef = useRef(null)
 
+  ///////////////////////////////////////////////
+
+  const generateReport = () => {
+    const doc = new jsPDF();
+    const title = "View All Transactions";
+    doc.setFontSize(15);
+    doc.setTextColor(128, 0, 0);
+    doc.text(title, 100, 10, null, null, "center");
+    doc.setFontSize(12);
+    const headers = [
+        [
+            "Payment ID",
+            "Payment Description",
+            "Payment Category",
+            "Payment Date",
+            "Payment Amount"
+        ],
+    ];
+
+    const data = records.map((reserve) => [
+       
+        reserve.paymentID,
+        reserve.paymentDescription,
+        reserve.paymentCategory,
+        reserve.paymentDate,
+        reserve.paymentAmount,
+       
+    ]);
+    let contents = {
+        startY: 20,
+        head: headers,
+        body: data,
+        theme:'grid',
+        
+    };
+    
+    doc.autoTable(contents);
+    doc.save("Employee_Report.pdf");
+};
+
+
+  //////////////////////////////////////////////
+
   return (
     
 
@@ -74,9 +119,21 @@ export default function RecordList() {
           <div style={{ marginLeft: 'auto' }}>
             <button
               type='button'
-              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#BB8760] '
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#A27B5C] '
             >
               <a href='/summaryPayment'>Payment Summary</a>
+            </button>
+          </div>
+          <div>
+                
+            <button
+
+              type="button"
+              id="downloadBtn"
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#D67D3E] '
+              onClick={() => generateReport()}
+            >
+              Download PDF Report
             </button>
           </div>
           <div>
@@ -85,14 +142,14 @@ export default function RecordList() {
             sheet='payments'
             currentTableRef={paymentsRef.current}>
               <button type='button'
-              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#B85C38] '>
-              Download Report</button>
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#CA965C] '>
+              Download Excel Report</button>
             </DownloadTableExcel>
           </div>
           <div>
             <button
               type='button'
-              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#753422] '
+              class='focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:text-white dark:bg-[#876445] '
             >
               <a href='/createPayment'>Create Payment</a>
             </button>
@@ -127,7 +184,7 @@ export default function RecordList() {
           <tbody>
             {records
               .filter((records) => {
-                if (search == '') {
+                if (search === '') {
                   return records;
                 } else if (
                   records.paymentID
@@ -163,7 +220,7 @@ export default function RecordList() {
                     </td>
 
                     <td style={{padding:"12px", border: "1px solid", backgroundColor:"#EEEEEE"}}>
-                      <button style={{padding:"10px 25px",fontWeight:"500",boxSizing:"border-box"}} class="focus:outline-none text-gray-600 bg-yellow-400 hover:bg 'FFB200' focus:ring-4 focus:'FFB200' font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:'FFB200'">
+                      <button style={{padding:"10px 25px",fontWeight:"500",boxSizing:"border-box"}} class="focus:outline-none text-gray-600 bg-yellow-500 hover:bg 'E6B325' focus:ring-4 focus:'E6B325' font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:'E6B325'">
                         <Link to={`/updatePayment/${records._id}`}>Edit</Link>
                       </button>
                       &nbsp;&nbsp;&nbsp;&nbsp;
