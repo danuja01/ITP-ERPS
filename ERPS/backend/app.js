@@ -6,6 +6,7 @@ const degreesRoutes = require('./routes/degrees.routes.js');
 const studentsRoutes = require('./routes/students.routes.js');
 const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
 const selectedStudents = require('./routes/slected.students.routes.js');
+const adminRoutes = require('./routes/admin.routes.js');
 
 require('dotenv').config();
 
@@ -19,6 +20,9 @@ app.use(cors());
 app.use(express.json());
 
 /********* routes **********/
+
+//admin
+app.use('/api/admin', adminRoutes);
 
 //degrees
 app.use('/api/degrees', degreesRoutes);

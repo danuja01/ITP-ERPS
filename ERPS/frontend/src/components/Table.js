@@ -94,7 +94,6 @@ const Table = ({ selectedStudents }) => {
   };
 
   //handle csv
-
   const ExportXLXS = () => {
     const fileName = 'selected students list';
     const exportType = 'csv';

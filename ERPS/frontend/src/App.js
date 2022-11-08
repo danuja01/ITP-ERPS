@@ -7,6 +7,8 @@ import UpdateDegree from './pages/UpdateDegree';
 import NotFound from './pages/NotFound';
 import Applications from './pages/Applications';
 import Test from './pages/Test';
+import AdminSignup from './pages/AdminSignup';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />
+          <Route path='/admin/signup' element={<AdminSignup />} />
+          <Route path='/admin/login' element={<AdminLogin />} />
 
           {/* 404 page */}
           <Route path='*' element={<NotFound />} />
