@@ -13,10 +13,12 @@ const degreeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  streams: {
-    type: Array,
-    required: true,
-  },
+  streams: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   description: {
     type: String,
     required: true,
