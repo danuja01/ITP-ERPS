@@ -3,7 +3,9 @@ const Degree = require('../models/degrees.model.js');
 //get all degrees
 
 const getDegrees = async (req, res) => {
-  const degrees = await Degree.find({});
+  const q = req.query.q;
+
+  const degrees = await Degree.find().sort({ _id: -1 });
 
   if (!degrees) {
     return res.status(404).json({ message: 'No available degrees found' });
@@ -37,6 +39,7 @@ const addDegree = async (req, res) => {
       streams,
       description,
     });
+
     return res.status(200).json(degree);
   } catch (error) {
     return res.status(500).json({ message: error.message });

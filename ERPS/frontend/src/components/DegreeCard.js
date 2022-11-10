@@ -1,20 +1,28 @@
-const DegreeCard = () => {
+
+import { Link } from 'react-router-dom';
+
+const DegreeCard = ({ degree }) => {
+  const streams = degree.streams.map((stream) => stream).join(', ');
+
   return (
-    <div class='p-6 m-2 bg-white rounded-lg border border-gray-200 shadow-md'>
-      <h3 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 max-w'>
-        BSc (Hons) in Information Technology
+    <div className='p-6 m-8 ml-2 mb-5 border border-gray-50 bg-white rounded-lg  shadow-md '>
+      <h3 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 max-w h-16'>
+        {degree.degree_name}
       </h3>
-      <p class=' font-normal text-gray-400'>Minimum Z-score - 3.7</p>
-      <p class='mb-3 font-normal text-gray-400'>
-        Msubject streams - Science, Commerce
+      <p className=' font-normal text-gray-400'>
+        Minimum Z-score - {degree.z_score}
       </p>
-      <div className='flex items-end justify-end'>
-        <a
-          href='/'
-          class=' w-28 py-2.5 px-3 text-sm font-medium text-center text-white bg-brown-100 rounded-lg hover:bg-brown-200 focus:ring-4 focus:outline-none focus:ring-blue-300 '
+      <p className='mb-3 font-normal text-gray-400'>
+        Subject streams - {streams}
+      </p>
+      <div className='flex justify-end'>
+        <Link
+          to={`/admin/degree/${degree._id}`}
+          className=' w-28 py-2.5 px-3 text-sm font-medium text-center text-white bg-brown-100 rounded-lg hover:bg-brown-200 focus:ring-4 focus:outline-none focus:ring-brown-500 '
         >
           View More
-        </a>
+        </Link>
+
       </div>
     </div>
   );
