@@ -1,17 +1,52 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../components/Assest/form.css"
-import "../components/Assest/Button.css"
+import { useParams } from "react-router-dom";
+import "../components/Assest/Form2.css"
+import AdminNav from "../components/AdminNav"
 
+    function IssueBook() {
+    
+      const { id } = useParams();
+      console.log(id);
+    
+      const [ISBN_Number, setISBN_Number] = useState("");
+      const [Book_Name, setBook_Name] = useState("");
+      const [Student_ID, setStudent_ID] = useState("");
+      const [Student_Name, setStudent_Name] = useState("");
+      const [Count, setCount] = useState("");
+      const [Date, setDate] = useState("");
+    
+      const getBook = () => {
+    
+        axios
+    
+          .get("http://localhost:4000/book/get/" +id)
+    
+          .then((res) => {
 
-export default function IssueBook(){
+             setISBN_Number(res.data.book.ISBN_Number);
+             setBook_Name(res.data.book.Book_Name);
+             setCount(res.data.book);
+            
+    
+          })
+    
+          .catch((err) => {
+    
+            alert(err.message);
+    
+          });
+    
+      };
 
-    const [Student_ID, setStudent_ID] = useState("");
-    const [Student_Name, setStudent_Name] = useState("");
-    const [ISBN_Number, setISBN_Number] = useState("");
-    const [Book_Name, setBook_Name] = useState("");
-    const [Date, setDate] = useState("");
+    console.log(Count);
+      useEffect(() => {
+    
+        getBook();
+    
+      }, []);
 
+      
     function sendData(e){
         e.preventDefault();
         
@@ -23,7 +58,7 @@ export default function IssueBook(){
             Date
         }
         console.log(newBook)
-        axios.post("http://localhost:8065/BookIssue/issue",newBook).then(() => {
+        axios.post("http://localhost:4000/BookIssue/issue",newBook).then(() => {
             alert("Book Issued");
             
         }).catch((err) => {
@@ -32,51 +67,81 @@ export default function IssueBook(){
     }
 
     return (
-        <div>
-         <h2 className="h2">Issue Book</h2>
+        <div className="libimg">
+        <section className='flex gap-6'>
 
-        <form className="form-style-5" onSubmit={sendData}>
-            <div className="container">
-                <label for="Student_ID">Student ID  </label>
-                <input type="text" className="form-control" id="Student_ID" placeholder="Enter Student ID  " onChange={(e) => {
-                    setStudent_ID(e.target.value);
-                }}/>
-            </div>
-                    <br/>
-            <div className="container">
-                <label for="Student_Name">Student Name </label>
-                <input type="text" className="form-control" id="Student_Name" placeholder="Enter Student Name " onChange={(e)=>{
-                    setStudent_Name(e.target.value);
-                }}/>
-            </div>
-            <br/>
-            <div className="container">
-                <label for="ISBN_Number"> ISBN Number</label>
-                <input type="text" className="form-control" id="ISBN_Number" placeholder="Enter ISBN Number" onChange={(e)=>{
+<AdminNav />
+        <div >
+
+        <ul>
+  <li><a  href="/libHome">Home</a></li>
+  <li><a  href="/retrive">All Books</a></li>
+  <li><a  href="/add">Add Book</a></li>
+  <li><a href="/retriveissue">Issued Books</a></li>
+  </ul>
+  <br/><br/><br/>
+  
+            <form className="formalign" onSubmit={sendData}>
+            <div class="form">
+        <div class="title">Issue Book</div>
+
+          
+
+            <div className="input-container ic1">
+                
+                <input type="text"  value={ISBN_Number}  className="input" id="ISBN_Number"  onChange={(e)=>{
                     setISBN_Number(e.target.value);
+
                 }}/>
+                    <div class="cut"></div>
+                <label for="ISBN_Number" class="placeholder"> ISBN Number</label>
             </div>
-            <br/>
-            <div className="container">
-                <label for="Book_Name">Book Name </label>
-                <input type="text" className="form-control" id="Publisher" placeholder="Enter Book Name " onChange={(e)=>{
+
+
+            <div className="input-container ic2">
+                
+                <input type="text"  value={Book_Name}  className="input" id="Publisher" required onChange={(e)=>{
                     setBook_Name(e.target.value);
                 }}/>
+<div class="cut"></div>
+                <label for="Book_Name" class="placeholder">Book Name </label>
             </div>
-            <br/>
-            <div className="container">
-                <label for="Date">Date</label>
-                <input type="Date" className="form-control" id="Location" placeholder="Enter Date" onChange={(e)=>{
+
+            <div className="input-container ic2">
+               
+                <input type="text" className="input" id="Student_ID" maxLength={6} pattern="[0-9]{6}" required onChange={(e) => {
+                    setStudent_ID(e.target.value);
+                }}/>
+<div class="cut"></div>
+                <label for="Student_ID" class="placeholder" >Student ID  </label>
+            </div>
+
+            <div className="input-container ic2">
+              
+                <input type="text" className="input" id="Student_Name" onChange={(e)=>{
+                    setStudent_Name(e.target.value);
+                }}/>
+<div class="cut"></div>
+                <label for="Student_Name" class="placeholder">Student Name </label>
+            </div>
+
+            <div className="input-container ic2">
+            
+                <input type="Date" className="input" id="Location"  onChange={(e)=>{
                     setDate(e.target.value);
                 }}/>
+<div class="cut"></div>
+            <label for="Date" class="placeholder">Date</label>
             </div>
-<br/>
-            <button class="button" type="submit" > ADD</button>
             <br/>
-            <br/>
-        
+            <button class="submit" type="submit" > Issue</button>
+        </div>
             </form>
-            </div>
-    )
+        </div>
+                </section>
+                </div>
+      
+    );
+};
 
-}
+export default IssueBook;

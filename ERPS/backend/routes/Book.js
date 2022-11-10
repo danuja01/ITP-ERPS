@@ -7,16 +7,16 @@ router.route("/add").post((req,res)=>{
     const ISBN_Number = req.body.ISBN_Number;
     const Book_Name = req.body.Book_Name;
     const Author_Name = req.body.Author_Name;
-    const Publisher = req.body.Publisher;
     const Location = req.body.Location;
+    const Copies = req.body.Copies;
 
     const newBook = new book({
 
         ISBN_Number,
         Book_Name,
         Author_Name,
-        Publisher,
-        Location
+        Location,
+        Copies
     })
 
     newBook.save().then(()=>{
@@ -43,14 +43,14 @@ router.route("/retrive").get((req,res)=>{
 //http//Localhost:8070/student/update/
 router.route("/update/:id").put(async(req,res) => {
     let userId = req.params.id;
-    const{ISBN_Number,Book_Name,Author_Name,Publisher,Location} =req.body;
+    const{ISBN_Number,Book_Name,Author_Name,Location,Copies} =req.body;
 
     const updateBook = {
         ISBN_Number,
         Book_Name,
         Author_Name,
-        Publisher,
-        Location
+        Location,
+        Copies
     }
 
     const update = await book.findByIdAndUpdate(userId,updateBook)

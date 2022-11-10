@@ -18,16 +18,14 @@ const bookSchema = new Schema({
         required: true
     },
 
-    Publisher : {
-        type: String,
-        required: true
-    },
-
     Location : {
         type: String,
         required: true
+    },
+    Copies : {
+        type: String,
+        required: true
     }
-
 
 })
 

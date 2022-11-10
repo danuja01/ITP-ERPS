@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+var cors = require('cors');
 const degreesRoutes = require('./routes/degrees.routes.js');
 
 
@@ -10,6 +10,8 @@ require('dotenv').config();
 
 // app config
 const app = express();
+app.use(cors());  //cors
+
 
 // middleware
 app.use(express.json());
@@ -36,7 +38,7 @@ mongoose
   });
 
 //port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

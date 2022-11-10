@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
-import "../components/Assest/form.css"
-import "../components/Assest/Button.css"
+import "../components/Assest/Form2.css"
+import AdminNav from "../components/AdminNav"
+
 
 
 export default function AddBook(){
@@ -9,8 +10,8 @@ export default function AddBook(){
     const [ISBN_Number, setISBN_Number] = useState("");
     const [Book_Name, setBook_Name] = useState("");
     const [Author_Name, setAuthor_Name] = useState("");
-    const [Publisher, setPublisher] = useState("");
     const [Location, setLocation] = useState("");
+    const [Copies, setCopies] = useState("");
 
     function sendData(e){
         e.preventDefault();
@@ -19,11 +20,11 @@ export default function AddBook(){
             ISBN_Number, 
             Book_Name,
             Author_Name,
-            Publisher,
-            Location
+            Location,
+            Copies
         }
         console.log(newBook)
-        axios.post("http://localhost:8065/book/add",newBook).then(() => {
+        axios.post("http://localhost:4000/book/add",newBook).then(() => {
             alert("Book Added");
             
         }).catch((err) => {
@@ -33,50 +34,95 @@ export default function AddBook(){
 
     return (
         <div>
-         <h2 className="h2">Add Book</h2>
+        <div className="libimg">
 
-        <form className="form-style-5" onSubmit={sendData}>
-            <div className="container">
-                <label for="ISBN_Number">ISBN Number </label>
-                <input type="text" className="form-control" id="ISBN_Number" placeholder="Enter ISBN Number " onChange={(e) => {
+        <section className='flex gap-6'>
+
+<AdminNav />
+
+
+
+       <div>
+            
+
+        <ul>
+  <li><a  href="/libHome">Home</a></li>
+  <li><a  href="/retrive">All Books</a></li>
+  <li><a  class="active" href="/add">Add Book</a></li>
+  <li><a href="/retriveissue">Issued Books</a></li>
+  </ul>
+  <br/><br/>
+    <form className="formalign" onSubmit={sendData}>
+        <div class="form">
+        <div class="title">Add Book</div>
+ 
+
+            <div className="input-container ic1">
+                
+                <input type="text" className="input" id="ISBN_Number" maxLength={13} pattern="[0-9]{13}"  placeholder=" " required onChange={(e) => {
                     setISBN_Number(e.target.value);
                 }}/>
+                     <div class="cut"></div>
+                 <label for="ISBN_Number"  class="placeholder">ISBN Number </label>
             </div>
-                    <br/>
-            <div className="container">
-                <label for="Book_Name">Book Name </label>
-                <input type="text" className="form-control" id="Book_Name" placeholder="Enter Book Name " onChange={(e)=>{
+                
+            <div className="input-container ic2">
+               
+                <input type="text" className="input" id="Book_Name" placeholder=" " required onChange={(e)=>{
                     setBook_Name(e.target.value);
                 }}/>
+                     <div class="cut"></div>
+                 
+                 <label for="Book_Name"class="placeholder" >Book Name </label>
             </div>
-            <br/>
-            <div className="container">
-                <label for="Author_Name"> Author Name</label>
-                <input type="text" className="form-control" id="Author_Name" placeholder="Enter Author Name" onChange={(e)=>{
+         
+            <div className="input-container ic2">
+             
+                <input type="text" className="input" id="Author_Name" placeholder=" "required onChange={(e)=>{
                     setAuthor_Name(e.target.value);
                 }}/>
+                <div class="cut"></div>
+                <label for="Author_Name" class="placeholder"> Author Name</label>
             </div>
-            <br/>
-            <div className="container">
-                <label for="Publisher">Publisher </label>
-                <input type="text" className="form-control" id="Publisher" placeholder="Enter Publisher " onChange={(e)=>{
-                    setPublisher(e.target.value);
-                }}/>
-            </div>
-            <br/>
-            <div className="container">
-                <label for="Location">Location</label>
-                <input type="text" className="form-control" id="Location" placeholder="Enter Location" onChange={(e)=>{
+           
+            <div className="input-container ic2">
+               
+                <input type="text" className="input" id="Location" placeholder=" " required onChange={(e)=>{
                     setLocation(e.target.value);
                 }}/>
+                <div class="cut"></div>
+                <label for="Location" class="placeholder">Location</label>
             </div>
-<br/>
-            <button class="button" type="submit" > ADD</button>
+
+            <div className="input-container ic2">
+               
+               <input type="number" className="input" id="copies" placeholder=" " required onChange={(e)=>{
+                   setCopies(e.target.value);
+               }}/>
+               <div class="cut"></div>
+               <label for="copies" class="placeholder">Copies Count</label>
+           </div>
+<br/>  
+      <button class="submit" type="submit"  > ADD</button>
             <br/>
             <br/>
+            </div>
         
             </form>
-            </div>
+            </div> 
+
+
+
+
+           
+
+
+
+            
+          </ section>
+          </div>
+
+          </div>
     )
 
 }
