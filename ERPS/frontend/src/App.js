@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 //hooks
 import { useAuthContext } from './hooks/useAuthContext';
 
 //pages & components
 import Dashboard from './pages/Dashboard';
+import Coursem from './pages/Coursem';
+import Addcourse from './pages/Addcourse';
+import Managecoursem from './pages/Managecoursem';
 import Degrees from './pages/Degrees';
 import AddDegree from './pages/AddDegree';
 import Degree from './pages/Degree';
@@ -16,8 +18,6 @@ import Test from './pages/Test';
 import AdminSignup from './pages/AdminSignup';
 import AdminLogin from './pages/AdminLogin';
 
-
-
 function App() {
   const { admin } = useAuthContext();
 
@@ -25,7 +25,8 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path='/admin/dashboard' element={<Dashboard />} />
+          {/* USER PATHS  */}
+          <Route path='/coursem' element={<Coursem />} />
 
           {/* ADMIN PATHSS */}
           <Route path='/admin/login' element={<AdminLogin />} />
@@ -52,6 +53,11 @@ function App() {
             element={admin ? <UpdateDegree /> : <AdminLogin />}
           />
 
+          {/* Course Materials */}
+          <Route path='/admin/dashboard' element={<Dashboard />} />
+          <Route path='/admin/addcourse' element={<Addcourse />} />
+          <Route path='/admin/Managecoursem' element={<Managecoursem />} />
+
           {/* Students Applications admin routes */}
           <Route
             path='/admin/applications'
@@ -63,7 +69,6 @@ function App() {
 
           {/* 404 page */}
           <Route path='*' element={<NotFound />} />
-
         </Routes>
       </BrowserRouter>
     </div>

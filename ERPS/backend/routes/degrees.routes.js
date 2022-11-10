@@ -27,4 +27,7 @@ router.delete('/:id', deleteDegree);
 // update degree
 router.patch('/:id', updateDegree);
 
+// get all degrees
+router.get('/', getDegrees);
+
 module.exports = router;

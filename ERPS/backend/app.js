@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var cors = require('cors');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
+const cmaterialsRoutes = require('./routes/courseMaterials.routes.js');
 
 const studentsRoutes = require('./routes/students.routes.js');
 const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
@@ -27,6 +28,9 @@ app.use('/api/admin', adminRoutes);
 
 //degrees
 app.use('/api/degrees', degreesRoutes);
+
+//c-materials
+app.use('/api/cmaterials', cmaterialsRoutes);
 
 //students
 app.use('/api/students', studentsRoutes);

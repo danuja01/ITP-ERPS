@@ -1,19 +1,19 @@
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
-import DegreeForm from '../components/DegreeForm';
-import DegreeFormHeader from '../components/DegreeFormHeader';
+import CourseForm from '../components/Courseform';
+import CoursemHeader from '../components/CoursemHeader';
 
-const AddDegree = () => {
+const Addcourse = () => {
   return (
     <section className='flex gap-6'>
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <DegreeFormHeader />
-        <DegreeForm />
+        <CoursemHeader title={'ADD A COURSE MATERIAL'} />
+        <CourseForm />
       </div>
     </section>
   );
 };
 
-export default AddDegree;
+export default Addcourse;
