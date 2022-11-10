@@ -3,6 +3,10 @@ import AdminNav from '../components/AdminNav';
 import AdminName from '../components/AdminName';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
+
+
 
 export default function AllItems() {
   const navigate = useNavigate();
@@ -37,6 +41,29 @@ export default function AllItems() {
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  const generatePdf = () => {
+    const doc = new jsPDF()
+    autoTable(doc, {
+      columns: [
+        { header: 'Item Name', dataKey: 'item_Name' },
+        { header: 'Price', dataKey: 'price' },
+        { header: 'Invoice No', dataKey: 'invoice_No' },
+        { header: 'Quantity', dataKey: 'quantity' },
+        { header: 'Date', dataKey: 'date' },
+      ],
+      body: items.map(item => {
+        return {
+          item_Name: item.item_Name,
+          price: item.price,
+          invoice_No:item.invoice_No,
+          quantity: item.quantity,
+          date: item.date,
+        };
+      })
+    })
+    doc.save('itemDetails.pdf')
   }
 
   const navigateToAddItemPage = ({ edit, item }) => {
@@ -90,13 +117,22 @@ export default function AllItems() {
                 </div>
               </div>
 
-              <div className='flex items-center space-x-20'>
-                <div className='relative'>
-                  <button className='relative z-0 inline-flex text-sm rounded-md shadow-sm focus:ring-accent-500 focus:border-accent-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1'></button>
-                </div>
-              </div>
-
               <button
+                type='button'
+                className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 
+                                focus:ring-gray-300 font-medium rounded-full 
+                                text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 
+                                dark:hover:bg-gray-700 dark:focus:ring-gray-700
+                                 dark:border-gray-700'
+                onClick={() => {
+                 generatePdf();
+                }}
+              >
+                &#8681; Generate
+                </button>
+           
+            </div>
+            <button
                 type='button'
                 className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 
                                 focus:ring-gray-300 font-medium rounded-full 
@@ -107,9 +143,9 @@ export default function AllItems() {
                   navigateToAddItemPage({ edit: false });
                 }}
               >
-                ADD Item
+              &#x2B; Add
               </button>
-            </div>
+            
 
             <div className='p-1.5 w-full inline-block align-middle'>
               <div className='overflow-hidden border rounded-lg'>

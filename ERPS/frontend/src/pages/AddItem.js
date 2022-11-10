@@ -4,6 +4,8 @@ import axios from 'axios';
 import VueSweetalert2 from 'sweetalert2';
 import { useLocation } from 'react-router-dom';
 import AdminNav from '../components/AdminNav';
+import { jsPDF } from "jspdf";
+
 
 export default function AddItem() {
   const navigate = useNavigate();
@@ -55,6 +57,7 @@ export default function AddItem() {
 
   function sendData(e) {
     e.preventDefault();
+    
     const newItem = {
       item_Name,
       price,
@@ -150,7 +153,10 @@ export default function AddItem() {
               type='text'
               id='item_Name'
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              required=''
+              required
+              
+
+
               onChange={(e) => setitemName(e.target.value)}
               value={item_Name}
             />
@@ -167,7 +173,7 @@ export default function AddItem() {
               type='text'
               id='price'
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              required=''
+              required
               onChange={(e) => setprice(e.target.value)}
               value={price}
             />
@@ -184,7 +190,7 @@ export default function AddItem() {
               type='text'
               id='invoice_No'
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              required=''
+              required
               onChange={(e) => setinvoiceNo(e.target.value)}
               value={invoice_No}
             />
@@ -201,7 +207,7 @@ export default function AddItem() {
               type='text'
               id='quantity'
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              required=''
+              required
               onChange={(e) => setquantity(e.target.value)}
               value={quantity}
             />
@@ -218,7 +224,7 @@ export default function AddItem() {
               type='text'
               id='date'
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              required=''
+              required
               onChange={(e) => setdate(e.target.value)}
               value={date}
             />
