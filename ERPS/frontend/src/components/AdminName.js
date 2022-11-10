@@ -12,7 +12,6 @@ const AdminName = () => {
   };
 
   return (
-
     <div className='mt-6 w-full '>
       <div className='text-2xl text-gray-700 grid grid-cols-2  items-center'>
         {admin && <h1>{admin.email} 👋</h1>}
@@ -23,7 +22,6 @@ const AdminName = () => {
         )}
       </div>
       <div className='w-full border-b border-gray-200 pt-2'></div>
-
     </div>
   );
 };
