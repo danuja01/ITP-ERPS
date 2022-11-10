@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
 const foodsRoutes = require('./routes/fooditem.routes.js');
+const itemRouter = require('./routes/items.routes.js');
 
 //const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
 
@@ -13,10 +15,13 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use('/api/degrees', degreesRoutes);
 app.use('/api/fooditem', foodsRoutes);
+app.use('/item', itemRouter);
+
 //app.use('/api/courseMaterials', courseMaterialsRoutes);
 
 // connect to db
@@ -30,7 +35,7 @@ mongoose
   });
 
 //port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
