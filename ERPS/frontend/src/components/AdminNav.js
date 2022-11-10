@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+// icons
 import { MdOutlineDashboard } from 'react-icons/md';
 import { GiGraduateCap } from 'react-icons/gi';
 import { HiMenuAlt3 } from 'react-icons/hi';
@@ -7,6 +9,7 @@ import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
 import { BiMessageAdd } from 'react-icons/bi';
+import { FaUsersCog } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 
@@ -19,6 +22,7 @@ const AdminNav = () => {
     { name: 'Inventory', link: '/admin/inventory', icon: MdInventory },
     { name: 'Food Items', link: '/admin/foods', icon: IoFastFood },
     { name: 'Payments', link: '/admin/payments', icon: MdOutlinePayment },
+    { name: 'Settings', link: '/admin/signup', icon: FaUsersCog },
   ];
   const [open, setOpen] = useState(false);
   return (

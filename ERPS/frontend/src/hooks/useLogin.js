@@ -2,29 +2,30 @@ import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
 import axios from 'axios';
 
-export const useSignup = () => {
+export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
 
     await axios
-      .post('http://localhost:4000/api/admin/signup', {
+      .post('http://localhost:4000/api/admin/login', {
         email,
         password,
       })
       .then((response) => {
-        // localStorage.setItem('admin', JSON.stringify(response.data));
+        localStorage.setItem('admin', JSON.stringify(response.data));
 
         // set user in context
-        // dispatch({ type: 'LOGIN', payload: response.data });
-
-        alert('New Admin Created Successfully');
+        dispatch({ type: 'LOGIN', payload: response.data });
 
         setIsLoading(false);
+
+        // redirect to dashboard page
+        window.location.replace('/admin/dashboard');
       })
       .catch((err) => {
         setError(err.response.data.error);
@@ -32,5 +33,5 @@ export const useSignup = () => {
       });
   };
 
-  return { signup, isLoading, error };
+  return { login, isLoading, error };
 };

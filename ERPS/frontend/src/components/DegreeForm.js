@@ -2,7 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//icons
 import { MdOutlineReportProblem } from 'react-icons/md';
+
+//hooks
+import { useAuthContext } from '../hooks/useAuthContext';
 
 //material ui dialog box
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +14,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 const DegreeForm = () => {
+  //hooks
+  const { admin } = useAuthContext();
+
   //fetch data
   const [degree_name, setDegree] = useState('');
   const [z_score, setZscore] = useState('');
@@ -24,6 +31,13 @@ const DegreeForm = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!admin) {
+      navigate('/admin/login');
+      return;
+    }
+  }, [admin, navigate]);
 
   //handle dialog box close
   const handleToClose = () => {
@@ -59,7 +73,11 @@ const DegreeForm = () => {
 
       setTimeout(() => {
         axios
-          .post('http://localhost:4000/api/degrees', degreeDetails)
+          .post('http://localhost:4000/api/degrees', degreeDetails, {
+            headers: {
+              Authorization: `Bearer ${admin.token}`,
+            },
+          })
           .then(() => {
             console.log('new degree added');
             setIsPending(false);
@@ -80,10 +98,6 @@ const DegreeForm = () => {
       setStream(streams.filter((stream) => stream !== e.target.value));
     }
   };
-
-  useEffect(() => {
-    console.log(streams);
-  }, [streams]);
 
   return (
     <div className='mx-60 pt-1'>

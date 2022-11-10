@@ -1,13 +1,19 @@
 import { useState } from 'react';
+import { useLogin } from '../hooks/useLogin';
+
+import { BsFillExclamationCircleFill } from 'react-icons/bs';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [type, setType] = useState('password');
+
+  const { login, isLoading, error } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(email, password);
+    await login(email, password);
   };
 
   return (
@@ -40,7 +46,6 @@ const AdminLogin = () => {
                   placeholder='name@mail.com'
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
-                  required
                 />
               </div>
               <div>
@@ -51,39 +56,54 @@ const AdminLogin = () => {
                   Password
                 </label>
                 <input
-                  type='password'
+                  type={type}
                   name='password'
                   id='password'
                   placeholder='••••••••'
                   class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
-                  required
                 />
+                <div className='flex justify-end'>
+                  <input
+                    type='checkbox'
+                    className='mt-2'
+                    onClick={() => {
+                      setType(type === 'password' ? 'text' : 'password');
+                    }}
+                  />
+                  <label className='mt-2 ml-2'>Show Password</label>
+                </div>
               </div>
-              {/* <div>
-                <label
-                  for='confirm-password'
-                  class='block mb-2 text-sm font-medium text-gray-900'
-                >
-                  Confirm password
-                </label>
-                <input
-                  type='confirm-password'
-                  name='confirm-password'
-                  id='confirm-password'
-                  placeholder='••••••••'
-                  class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
-                  required=''
-                />
-              </div> */}
 
               <button
                 type='submit'
                 class='w-full bg-brown-100 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center '
+                disabled={isLoading}
               >
-                LOGIN
+                {isLoading ? 'Loading...' : 'LOGIN'}
               </button>
+              {error && (
+                <div
+                  id='error'
+                  className=' border p-1 border-red-600 rounded-md pl-2 bg-red-100 flex'
+                >
+                  <BsFillExclamationCircleFill
+                    size={15}
+                    className='text-red-600 mt-0.5 mr-2'
+                  />
+                  <p className='text-red-600 text-sm'> {error}</p>
+
+                  <i
+                    className='text-red-600 text-sm text-right flex-1 justify-end mr-2 mb-0.5 cursor-pointer'
+                    onClick={() => {
+                      document.querySelector('#error').style.display = 'none';
+                    }}
+                  >
+                    x
+                  </i>
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -6,30 +6,36 @@ import { useSignup } from '../hooks/useSignup';
 
 import { BsFillExclamationCircleFill } from 'react-icons/bs';
 
-//material ui dialog box
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
+// //material ui dialog box
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
 
 const AdminSignup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const [type, setType] = useState('password');
 
   const { signup, isLoading, error } = useSignup();
 
   //handle dialog box close
-  const handleToClose = () => {
-    setOpen(false);
-  };
+  // const handleToClose = () => {
+  //   setOpen(false);
+  // };
+
+  // const handleToOpen = () => {
+  //   setOpen(true);
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(email, password).then(() => {
-      setOpen(true);
-      setEmail('');
-      setPassword('');
-    });
+    setEmail(email.toLowerCase());
+    console.log(email);
+
+    await signup(email, password);
   };
 
   return (
@@ -64,7 +70,6 @@ const AdminSignup = () => {
                     placeholder='name@mail.com'
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
-                    required={true}
                   />
                 </div>
                 <div>
@@ -75,15 +80,25 @@ const AdminSignup = () => {
                     Password
                   </label>
                   <input
-                    type='password'
+                    type={type}
                     name='password'
                     id='password'
                     placeholder='••••••••'
                     class='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 outline-brown-100'
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                    required={true}
                   />
+
+                  <div className='flex justify-end'>
+                    <input
+                      type='checkbox'
+                      className='mt-2'
+                      onClick={() => {
+                        setType(type === 'password' ? 'text' : 'password');
+                      }}
+                    />
+                    <label className='mt-2 ml-2'>Show Password</label>
+                  </div>
                 </div>
                 {/* <div>
                 <label
@@ -110,12 +125,24 @@ const AdminSignup = () => {
                   {isLoading ? 'Loading...' : 'Create Account'}
                 </button>
                 {error && (
-                  <div className='flex border p-1 border-red-600 rounded-md pl-2'>
+                  <div
+                    id='error'
+                    className=' border p-1 border-red-600 rounded-md pl-2 bg-red-100 flex'
+                  >
                     <BsFillExclamationCircleFill
                       size={15}
                       className='text-red-600 mt-0.5 mr-2'
                     />
                     <p className='text-red-600 text-sm'> {error}</p>
+
+                    <i
+                      className='text-red-600 text-sm text-right flex-1 justify-end mr-2 mb-0.5 cursor-pointer'
+                      onClick={() => {
+                        document.querySelector('#error').style.display = 'none';
+                      }}
+                    >
+                      x
+                    </i>
                   </div>
                 )}
               </form>
@@ -124,19 +151,19 @@ const AdminSignup = () => {
         </div>
       </div>
 
-      <Dialog open={open} onClose={handleToClose}>
+      {/* <Dialog open={open} onClose={handleToClose}>
         <DialogContent>
           <p>Admin Account Added Succesfully!</p>
         </DialogContent>
         <DialogActions>
           <button
-            className='  text-red-600  pr-4 mb-2 text-sm rounded-md'
+            className='  text-green-600  pr-4 mb-2 text-sm rounded-md'
             onClick={handleToClose}
           >
-            CLOSE
+            OK
           </button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </section>
   );
 };

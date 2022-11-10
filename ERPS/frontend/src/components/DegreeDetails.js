@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+
+//hooks
 import useFetch from '../hooks/useFetch';
 
 //material ui dialog box
@@ -9,9 +12,23 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { useState } from 'react';
 import axios from 'axios';
 
+import { useAuthContext } from '../hooks/useAuthContext';
+
 const DegreeDetails = () => {
+  const { admin } = useAuthContext();
+
   const { id } = useParams();
   const [open, setOpen] = useState(false);
+
+  //navigation
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!admin) {
+      navigate('/admin/login');
+      return;
+    }
+  }, [admin, navigate]);
 
   //handle dialog box open
   const handleClickToOpen = () => {
@@ -29,17 +46,21 @@ const DegreeDetails = () => {
     error,
   } = useFetch(`http://localhost:4000/api/degrees/${id}`);
 
-  const navigate = useNavigate();
-
   const handleDelete = () => {
-    axios.delete(`http://localhost:4000/api/degrees/${degree._id}`).then(() => {
-      navigate('/admin/degrees');
-    });
+    axios
+      .delete(`http://localhost:4000/api/degrees/${degree._id}`, {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      })
+      .then(() => {
+        navigate('/admin/degrees');
+      });
   };
 
   return (
     <div class='max-w p-6 m-8 ml-2 mb-5 border border-gray-50 bg-white rounded-lg  shadow-md '>
-      {error && <p>{error}</p>}
+      {error && <p className='text-center text-red-600'>{error}</p>}
       {isPending && (
         <div className='loading'>
           <div className='snippet' data-title='.dot-pulse'>

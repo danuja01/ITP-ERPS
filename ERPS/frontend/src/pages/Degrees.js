@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+// component
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 import DegreeCard from '../components/DegreeCard';
 import DegreeHeader from '../components/DegreeHeader';
 
+//hooks
 import useFetch from '../hooks/useFetch';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Degrees = () => {
+  const { admin } = useAuthContext();
+
+  //navigation
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!admin) {
+      navigate('/admin/login');
+      return;
+    }
+  }, [admin, navigate]);
+
   const { data, isPending, error } = useFetch(
     'http://localhost:4000/api/degrees'
   );
+
   const [query, setQuery] = useState('');
 
   return (
@@ -36,7 +53,7 @@ const Degrees = () => {
           {error && (
             <div className='flex justify-center my-52'>
               <p className='text-red-600 text-2xl  border-2 px-10 py-4 border-red-600'>
-                404 : {error}
+                {error}
               </p>
             </div>
           )}

@@ -1,11 +1,19 @@
-import axios from 'axios';
-
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+
+//hooks
 import useFetch from '../hooks/useFetch';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const UpdateDegreeForm = () => {
+  //hooks
+  const { admin } = useAuthContext();
+
+  //params
   const { id } = useParams();
+
+  //states
   const [degree_name, setDegree] = useState('');
   const [z_score, setZscore] = useState('0');
   const [duration, setDuration] = useState(4);
@@ -49,7 +57,11 @@ const UpdateDegreeForm = () => {
     };
 
     axios
-      .patch(`http://localhost:4000/api/degrees/${degree._id}`, degreeDetails)
+      .patch(`http://localhost:4000/api/degrees/${degree._id}`, degreeDetails, {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      })
       .then(() => {
         console.log('degree updated');
         navigate(`/admin/degree/${degree._id}`);

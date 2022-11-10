@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+//components
 import AdminHeader from '../components/AdminHeader';
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 import Table from '../components/Table';
+
+//hooks
 import useFetch from '../hooks/useFetch';
 
 const Applications = () => {
