@@ -8,7 +8,7 @@ import { IoIosPeople } from 'react-icons/io';
 import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
-import { FaBookReader } from 'react-icons/fa';
+import { BiBookAlt } from 'react-icons/bi';
 import { BiMessageAdd } from 'react-icons/bi';
 import { FaUsersCog } from 'react-icons/fa';
 
@@ -21,7 +21,7 @@ const AdminNav = () => {
     {
       name: 'Course Materials',
       link: '/admin/Managecoursem',
-      icon: FaBookReader,
+      icon: BiBookAlt,
     },
     { name: 'Students', link: '/admin/students', icon: IoIosPeople },
     { name: 'Applications', link: '/admin/applications', icon: BiMessageAdd },

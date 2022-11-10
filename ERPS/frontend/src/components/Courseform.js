@@ -20,7 +20,7 @@ const CourseForm = () => {
       notice,
     };
 
-    fetch('/api/cmaterials', {
+    fetch('http://localhost:4000/api/cmaterials', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(courseDetails),

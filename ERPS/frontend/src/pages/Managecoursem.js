@@ -8,7 +8,7 @@ const Managecoursem = () => {
   const [cmaterials, setCmaterials] = useState(null);
   useEffect(() => {
     const fetchCmaterials = async () => {
-      const response = await fetch('/api/cmaterials');
+      const response = await fetch('http://localhost:4000/api/cmaterials');
       const json = await response.json();
 
       if (response.ok) {
