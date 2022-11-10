@@ -1,3 +1,4 @@
+
 # General
 .DS_Store
 .AppleDouble
@@ -156,3 +157,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# dependencies
+/node_modules
+

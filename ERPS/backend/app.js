@@ -3,12 +3,18 @@ const mongoose = require('mongoose');
 var cors = require('cors');
 
 const degreesRoutes = require('./routes/degrees.routes.js');
+
 const cmaterialsRoutes = require('./routes/courseMaterials.routes.js');
 
 const studentsRoutes = require('./routes/students.routes.js');
 const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
 const selectedStudents = require('./routes/slected.students.routes.js');
 const adminRoutes = require('./routes/admin.routes.js');
+
+const foodsRoutes = require('./routes/fooditem.routes.js');
+
+//const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
+
 
 require('dotenv').config();
 
@@ -28,6 +34,10 @@ app.use('/api/admin', adminRoutes);
 
 //degrees
 app.use('/api/degrees', degreesRoutes);
+
+app.use('/api/fooditem', foodsRoutes);
+//app.use('/api/courseMaterials', courseMaterialsRoutes);
+
 
 //c-materials
 app.use('/api/cmaterials', cmaterialsRoutes);
