@@ -1,17 +1,18 @@
 .bcimg  {
-    background-image: url("banner2.png");
+    background-image: url("./Image/banner2.png");
     background-repeat: no-repeat;
     background-size:cover;
   }
 
-  .libimg{
-    background-image: url("librack.jpg");
+ .libimg{
+    background-image: url("./Image/librack.jpg");
     background-repeat: no-repeat;
     background-size:cover;
+    height: 100bh;
   }
 
   .whitebc{
-    background-image: url("bcwhite.jpg");
+    background-image: url("./Image/bcwhite.jpg");
     background-repeat: no-repeat;
     background-size:cover;
   }

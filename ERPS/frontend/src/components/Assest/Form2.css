@@ -2,12 +2,17 @@ body {
     align-items: center;
     justify-content: center;
   }
+
+.hei{
+  max-width:10%;
+  margin-left: 48%;
+}
+
   
   .form {
     background-color: #15172b;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 600px;
     padding: 20px;
     width: 700px;
   }
@@ -124,7 +129,7 @@ body {
   }
   
   .formalign{
-    margin: 375px;
+    margin: 55%;
     margin-top: 20px;
    
    
