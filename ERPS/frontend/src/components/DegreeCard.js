@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 
 const DegreeCard = ({ degree }) => {
@@ -21,6 +22,7 @@ const DegreeCard = ({ degree }) => {
         >
           View More
         </Link>
+
       </div>
     </div>
   );

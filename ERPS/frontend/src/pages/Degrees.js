@@ -1,10 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
 
 // component
+
 import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 import DegreeCard from '../components/DegreeCard';
 import DegreeHeader from '../components/DegreeHeader';
+
 
 //hooks
 import useFetch from '../hooks/useFetch';
@@ -29,6 +32,7 @@ const Degrees = () => {
   );
 
   const [query, setQuery] = useState('');
+
 
   return (
     <section className='flex gap-6'>

@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -124,10 +125,12 @@ const DegreeForm = () => {
       )}
       <form onSubmit={handleSubmit}>
         <div className='px-4 pt-1 pb-5'>
+
           <label
             htmlFor='degree'
             className='block text-sm font-medium text-gray-700'
           >
+
             <i
               className={`inline float-left mr-2  ${
                 isEmpty && degree_name === '' ? 'text-red-600' : ''
@@ -135,10 +138,12 @@ const DegreeForm = () => {
             >
               *
             </i>
+
             Degree
           </label>
           <input
             type='text'
+
             value={degree_name}
             onChange={(e) => setDegree(e.target.value)}
             placeholder='Add a Degree Program'
@@ -148,12 +153,14 @@ const DegreeForm = () => {
                 : 'border-gray-300'
             }`}
             // required
+
           />
 
           <label
             htmlFor='z-score'
             className='block text-sm font-medium text-gray-700 mt-6'
           >
+
             <i
               className={`inline float-left mr-2  ${
                 isEmpty && z_score === '' ? 'text-red-600' : ''
@@ -161,10 +168,12 @@ const DegreeForm = () => {
             >
               *
             </i>
+
             Maximum z-score
           </label>
           <input
             type='number'
+
             value={z_score}
             onChange={(e) => {
               setZscore(e.target.value);
@@ -214,6 +223,7 @@ const DegreeForm = () => {
             <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
               <svg
                 className='fill-current h-4 w-4'
+
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 20 20'
               >
@@ -226,6 +236,7 @@ const DegreeForm = () => {
             htmlFor='streams'
             className='block text-sm font-medium text-gray-700 mt-6'
           >
+
             <i
               className={`inline float-left mr-2  ${
                 isEmpty && streams.length === 0 ? 'text-red-600' : ''
@@ -255,10 +266,12 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='pScience'
+
               >
                 Physical Science
               </label>
             </div>
+
             <div className='form-check mt-5'>
               <input
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
@@ -269,10 +282,12 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='flexCheckDefault'
+
               >
                 Commerce
               </label>
             </div>
+
             <div className='form-check mt-5'>
               <input
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
@@ -283,10 +298,12 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='flexCheckDefault'
+
               >
                 Languages
               </label>
             </div>
+
             <div className='form-check mt-5'>
               <input
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
@@ -297,10 +314,12 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='flexCheckDefault'
+
               >
                 Arts
               </label>
             </div>
+
             <div className='form-check mt-5'>
               <input
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
@@ -311,10 +330,12 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='flexCheckDefault'
+
               >
                 Technology
               </label>
             </div>
+
             <div className='form-check mt-5'>
               <input
                 className='form-check-input appearance-none h-7 w-7 border border-gray-300 rounded-lg bg-white checked:bg-brown-100 checked:border-brown-100 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer'
@@ -325,6 +346,7 @@ const DegreeForm = () => {
               <label
                 className='form-check-label inline-block text-gray-800 '
                 htmlFor='flexCheckDefault'
+
               >
                 Biology
               </label>
@@ -335,6 +357,7 @@ const DegreeForm = () => {
             htmlFor='description'
             className='block text-sm font-medium text-gray-700 mt-4'
           >
+
             <i
               className={`inline float-left mr-2  ${
                 isEmpty && description === '' ? 'text-red-600' : ''
@@ -342,11 +365,14 @@ const DegreeForm = () => {
             >
               *
             </i>
+
             Degree Description :
           </label>
 
           <textarea
+
             className={`
+
         form-control
         mt-1
         block
@@ -357,12 +383,15 @@ const DegreeForm = () => {
         font-normal
         text-gray-700
         bg-white bg-clip-padding
+
         border border-solid
+
         rounded
         transition
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-brown-100 focus:border-2 focus:outline-none
+
         ${description === '' && isEmpty ? 'border-red-600' : 'border-gray-300'}
       `}
             rows='3'
@@ -392,6 +421,7 @@ const DegreeForm = () => {
                 Loading...
               </button>
             )}
+
           </div>
         </div>
       </form>

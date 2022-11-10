@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+
 //hooks
 import { useAuthContext } from './hooks/useAuthContext';
 
@@ -14,6 +15,8 @@ import Applications from './pages/Applications';
 import Test from './pages/Test';
 import AdminSignup from './pages/AdminSignup';
 import AdminLogin from './pages/AdminLogin';
+
+
 
 function App() {
   const { admin } = useAuthContext();
@@ -60,6 +63,7 @@ function App() {
 
           {/* 404 page */}
           <Route path='*' element={<NotFound />} />
+
         </Routes>
       </BrowserRouter>
     </div>

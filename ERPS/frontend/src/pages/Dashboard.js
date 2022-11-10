@@ -9,6 +9,7 @@ import AdminName from '../components/AdminName';
 import AdminNav from '../components/AdminNav';
 
 const Dashboard = () => {
+
   //hooks
   const { admin } = useAuthContext();
 
@@ -21,6 +22,7 @@ const Dashboard = () => {
       return;
     }
   }, [admin, navigate]);
+
 
   return (
     <section className='flex gap-6'>
