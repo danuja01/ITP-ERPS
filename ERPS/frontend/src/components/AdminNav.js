@@ -8,12 +8,12 @@ import { IoIosPeople } from 'react-icons/io';
 import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
-import { BiBookAlt } from 'react-icons/bi';
 import { BiMessageAdd } from 'react-icons/bi';
+import { FaBookOpen } from 'react-icons/fa';
+import { BiBookAlt } from 'react-icons/bi';
 import { FaUsersCog } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
-
 const AdminNav = () => {
   const menus = [
     { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
@@ -28,6 +28,8 @@ const AdminNav = () => {
     { name: 'Inventory', link: '/admin/inventory', icon: MdInventory },
     { name: 'Food Items', link: '/admin/foods', icon: IoFastFood },
     { name: 'Payments', link: '/admin/payments', icon: MdOutlinePayment },
+    { name: 'Libarary', link: '/libHome', icon: FaBookOpen },
+
     { name: 'Settings', link: '/admin/signup', icon: FaUsersCog },
   ];
   const [open, setOpen] = useState(false);
@@ -74,5 +76,4 @@ const AdminNav = () => {
     </div>
   );
 };
-
 export default AdminNav;
