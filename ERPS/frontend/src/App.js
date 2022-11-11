@@ -20,6 +20,10 @@ import Applications from './pages/Applications';
 import Test from './pages/Test';
 import AdminSignup from './pages/AdminSignup';
 import AdminLogin from './pages/AdminLogin';
+import ViewPayments from './pages/ViewPayments';
+import UpdatePayment from './pages/UpdatePayment';
+import AddPayment from './pages/AddPayment';
+import SummaryPayment from './pages/SummaryPayments';
 import AddBook from './components/AddBook';
 import AllBook from './components/ViewAllBook';
 import Home from './components/Home';
@@ -80,6 +84,12 @@ function App() {
             path='/admin/applications'
             element={admin ? <Applications /> : <AdminLogin />}
           />
+
+          {/* Payments */}
+          <Route path='admin/payments' exact element={<ViewPayments />} />
+          <Route path='/createPayment' exact element={<AddPayment />} />
+          <Route path='/updatePayment/:id' exact element={<UpdatePayment />} />
+          <Route path='/summaryPayment' exact element={<SummaryPayment />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />
