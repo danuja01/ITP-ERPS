@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+//css
+import './App.css';
+
 //hooks
 import { useAuthContext } from './hooks/useAuthContext';
 
@@ -17,6 +20,12 @@ import Applications from './pages/Applications';
 import Test from './pages/Test';
 import AdminSignup from './pages/AdminSignup';
 import AdminLogin from './pages/AdminLogin';
+import AddBook from './components/AddBook';
+import AllBook from './components/ViewAllBook';
+import Home from './components/Home';
+import IssueBook from './components/IssueBook';
+import ViewIssueBook from './components/ViewIssueBook';
+import UpdateBook from './components/UpdateBook';
 
 function App() {
   const { admin } = useAuthContext();
@@ -57,6 +66,14 @@ function App() {
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/addcourse' element={<Addcourse />} />
           <Route path='/admin/Managecoursem' element={<Managecoursem />} />
+
+          {/* lib */}
+          <Route path='/libHome' element={<Home />} />
+          <Route path='/add' element={<AddBook />} />
+          <Route path='/retrive' element={<AllBook />} />
+          <Route path='/issue/:id' element={<IssueBook />} />
+          <Route path='/retriveissue' element={<ViewIssueBook />} />
+          <Route path='/update/:id' element={<UpdateBook />} />
 
           {/* Students Applications admin routes */}
           <Route
