@@ -8,8 +8,8 @@ Please go under edit and edit this file as needed for your project
 ### Member 4 -  IT21052392 Thawalampola O.D (it21052392)
 ### Member 5 - IT21025976 Nanayakkara S.B (IT21025976)
 ### Member 6 - IT21026034 Gunathilake W.M.D.P (IT21026034)
-### Member 7 - IT21023378 Jayasuriya T. D. D. H (IT21023378)
-### Member 8 - 
+### Member 7 - IT21023378 Jayasuriya T. D. D. H (danuja01)
+### Member 8 - IT20633868 Jataweera J.M.M.G (it20633868)
 
 #### Brief Description of Project - 
 #### Technologies used - 

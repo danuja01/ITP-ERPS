@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+// icons
 import { MdOutlineDashboard } from 'react-icons/md';
 import { GiGraduateCap } from 'react-icons/gi';
 import { HiMenuAlt3 } from 'react-icons/hi';
@@ -6,7 +8,9 @@ import { IoIosPeople } from 'react-icons/io';
 import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
+import { BiBookAlt } from 'react-icons/bi';
 import { BiMessageAdd } from 'react-icons/bi';
+import { FaUsersCog } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 
@@ -14,11 +18,17 @@ const AdminNav = () => {
   const menus = [
     { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
     { name: 'Degrees', link: '/admin/degrees', icon: GiGraduateCap },
+    {
+      name: 'Course Materials',
+      link: '/admin/Managecoursem',
+      icon: BiBookAlt,
+    },
     { name: 'Students', link: '/admin/students', icon: IoIosPeople },
     { name: 'Applications', link: '/admin/applications', icon: BiMessageAdd },
     { name: 'Inventory', link: '/admin/inventory', icon: MdInventory },
     { name: 'Food Items', link: '/admin/foods', icon: IoFastFood },
     { name: 'Payments', link: '/admin/payments', icon: MdOutlinePayment },
+    { name: 'Settings', link: '/admin/signup', icon: FaUsersCog },
   ];
   const [open, setOpen] = useState(false);
   return (
