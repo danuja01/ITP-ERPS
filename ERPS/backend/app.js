@@ -22,6 +22,8 @@ require('dotenv').config();
 
 // app config
 const app = express();
+app.use(cors());  //cors
+
 
 //cors
 app.use(cors());
@@ -37,7 +39,12 @@ app.use('/api/admin', adminRoutes);
 //degrees
 app.use('/api/degrees', degreesRoutes);
 
-//foofitems
+const bookRouter = require("./routes/Book.js");
+app.use("/book",bookRouter);
+
+const bookIssue = require("./routes/BookIssue.js");
+app.use("/BookIssue",bookIssue);
+
 app.use('/api/fooditem', foodsRoutes);
 
 //payments
