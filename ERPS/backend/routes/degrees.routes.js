@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { requireAuth } = require('../middleware/requireAuth');
 
 const {
   getDegrees,
@@ -8,6 +9,11 @@ const {
   updateDegree,
 } = require('../controllers/degrees.controller.js');
 
+//auth middleware
+// router.use(requireAuth);
+
+// get all degrees
+router.get('/', getDegrees);
 
 // get a single degree
 router.get('/:id', getDegree);
