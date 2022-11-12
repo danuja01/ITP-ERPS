@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import 'tw-elements';
 
+import { DegreeContextProvider } from './Context/DegreeContext';
+import { AuthProvider } from './Context/AuthContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
-
-
+  <React.StrictMode>
+    <AuthProvider>
+      <DegreeContextProvider>
+        <App />
+      </DegreeContextProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );
