@@ -26,10 +26,24 @@ import AddPayment from './pages/AddPayment';
 import SummaryPayment from './pages/SummaryPayments';
 import AddBook from './components/AddBook';
 import AllBook from './components/ViewAllBook';
-import Home from './components/Home';
+import LibHome from './components/Home';
 import IssueBook from './components/IssueBook';
 import ViewIssueBook from './components/ViewIssueBook';
 import UpdateBook from './components/UpdateBook';
+import Home from './pages/Home';
+import FoodItem from './pages/Fooditem';
+import BreakfastItems from './pages/BreakfastItems';
+import Dinner from './pages/Dinner';
+import Addfooditem from './pages/Addfooditem';
+import Editfooditem from './pages/Editfooditem';
+import LunchItems from './pages/LunchItems';
+import Foodhomelod from './pages/Fooditemhomelod';
+import MainFoodHome from './pages/MainFoodHome';
+import BreakfastHome from './pages/BreakfastHome';
+import LunchHome from './pages/LunchHome';
+import DinnertHome from './pages/DinnerHome';
+import ViewMenu from './pages/ViewMenu';
+import Cart from './pages/Cart';
 
 function App() {
   const { admin } = useAuthContext();
@@ -38,6 +52,9 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          {/* home */}
+          <Route path='/Home' element={<Home />} />
+
           {/* USER PATHS  */}
           <Route path='/coursem' element={<Coursem />} />
 
@@ -72,7 +89,7 @@ function App() {
           <Route path='/admin/Managecoursem' element={<Managecoursem />} />
 
           {/* lib */}
-          <Route path='/libHome' element={<Home />} />
+          <Route path='/libHome' element={<LibHome />} />
           <Route path='/add' element={<AddBook />} />
           <Route path='/retrive' element={<AllBook />} />
           <Route path='/issue/:id' element={<IssueBook />} />
@@ -90,6 +107,21 @@ function App() {
           <Route path='/createPayment' exact element={<AddPayment />} />
           <Route path='/updatePayment/:id' exact element={<UpdatePayment />} />
           <Route path='/summaryPayment' exact element={<SummaryPayment />} />
+
+          {/* Food Items */}
+          <Route path='/foods' element={<FoodItem />} />
+          <Route path='/breakfastitems' element={<BreakfastItems />} />
+          <Route path='/lunchitems' element={<LunchItems />} />
+          <Route path='/Dinner' element={<Dinner />} />
+          <Route path='/addfooditem' element={<Addfooditem />} />
+          <Route path='/editfooditem/:id' element={<Editfooditem />} />
+          <Route path='/Foodhomelod' element={<Foodhomelod />} />
+          <Route path='/MainFoodHome' element={<MainFoodHome />} />
+          <Route path='/BreakfastHome' element={<BreakfastHome />} />
+          <Route path='/LunchHome' element={<LunchHome />} />
+          <Route path='/DinnertHome' element={<DinnertHome />} />
+          <Route path='/ViewMenu' element={<ViewMenu />} />
+          <Route path='/cart' element={<Cart />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />

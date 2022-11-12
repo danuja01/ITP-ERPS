@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-
-
 //const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
 var cors = require('cors');
 
@@ -14,22 +12,22 @@ const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
 const selectedStudents = require('./routes/slected.students.routes.js');
 const adminRoutes = require('./routes/admin.routes.js');
 const foodsRoutes = require('./routes/fooditem.routes.js');
+const CartsRoutes = require('./routes/Cart.routes.js');
 
 //const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
-
 
 require('dotenv').config();
 
 // app config
 const app = express();
-app.use(cors());  //cors
-
+app.use(cors()); //cors
 
 //cors
 app.use(cors());
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 /********* routes **********/
 
@@ -38,12 +36,14 @@ app.use('/api/admin', adminRoutes);
 
 //degrees
 app.use('/api/degrees', degreesRoutes);
+app.use('/api/fooditem', foodsRoutes);
+app.use('/api/cart', CartsRoutes);
 
-const bookRouter = require("./routes/Book.js");
-app.use("/book",bookRouter);
+const bookRouter = require('./routes/Book.js');
+app.use('/book', bookRouter);
 
-const bookIssue = require("./routes/BookIssue.js");
-app.use("/BookIssue",bookIssue);
+const bookIssue = require('./routes/BookIssue.js');
+app.use('/BookIssue', bookIssue);
 
 app.use('/api/fooditem', foodsRoutes);
 
@@ -65,9 +65,9 @@ app.use('/api/selected-students', selectedStudents);
 /********** connect to db **********/
 mongoose
   .connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log('mongodb connection successful');
   })
