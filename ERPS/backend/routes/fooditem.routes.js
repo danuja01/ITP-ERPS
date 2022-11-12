@@ -4,7 +4,8 @@ const {
     addfooditem,
     getfooditem,
     updatefooditem,
-    deletefooditem
+    deletefooditem,
+    getOneFood
   } = require('../controllers/fooditem.controller');
   
 // add new item
@@ -15,6 +16,9 @@ router.get('/' ,getfooditem);
 router.put('/:id' , updatefooditem);
 //delete
 router.delete('/:id' ,deletefooditem);
+router.get('/:id', getOneFood);
+
+
 
 
 

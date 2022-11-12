@@ -1,14 +1,27 @@
-const { FiLogOut } = require('react-icons/fi');
+import { useLogout } from '../hooks/useLogout';
+
+import { FiLogOut } from 'react-icons/fi';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const AdminName = () => {
+  const { logout } = useLogout();
+  const { admin } = useAuthContext();
+
+  const handleCLick = () => {
+    logout();
+  };
+
   return (
-    <div className='mt-4 w-full'>
-      <div className='m-3 text-2xl text-gray-900 font-semibold grid grid-cols-2  items-center'>
-        <h1 className=''>Good morning, Mr. Danuja! 👋</h1>
-        <a href='/' className='flex justify-end mr-12'>
-          <FiLogOut size={30} className='flex cursor-pointer' />
-        </a>
+    <div className='mt-6 w-full '>
+      <div className='text-2xl text-gray-700 grid grid-cols-2  items-center'>
+        {admin && <h1>{admin.email} 👋</h1>}
+        {admin && (
+          <button className='flex justify-end ' onClick={handleCLick}>
+            <FiLogOut size={30} className='flex cursor-pointer' />
+          </button>
+        )}
       </div>
+      <div className='w-full border-b border-gray-200 pt-2'></div>
     </div>
   );
 };

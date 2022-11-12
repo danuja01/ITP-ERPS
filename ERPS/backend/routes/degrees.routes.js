@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { requireAuth } = require('../middleware/requireAuth');
 
 const {
   getDegrees,
@@ -7,6 +8,9 @@ const {
   deleteDegree,
   updateDegree,
 } = require('../controllers/degrees.controller.js');
+
+//auth middleware
+// router.use(requireAuth);
 
 // get all degrees
 router.get('/', getDegrees);
@@ -22,5 +26,8 @@ router.delete('/:id', deleteDegree);
 
 // update degree
 router.patch('/:id', updateDegree);
+
+// get all degrees
+router.get('/', getDegrees);
 
 module.exports = router;
