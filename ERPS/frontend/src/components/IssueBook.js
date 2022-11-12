@@ -94,7 +94,7 @@ function IssueBook() {
 
                                 <div className="input-container ic1">
 
-                                    <input type="text" value={ISBN_Number} className="input" id="ISBN_Number" onChange={(e) => {
+                                    <input type="text" value={ISBN_Number} className="input" disabled id="ISBN_Number" onChange={(e) => {
                                         setISBN_Number(e.target.value);
 
                                     }} />
@@ -105,7 +105,7 @@ function IssueBook() {
 
                                 <div className="input-container ic2">
 
-                                    <input type="text" value={Book_Name} className="input" id="Publisher" required onChange={(e) => {
+                                    <input type="text" value={Book_Name} className="input" disabled id="Publisher" required onChange={(e) => {
                                         setBook_Name(e.target.value);
                                     }} />
                                     <div class="cut"></div>

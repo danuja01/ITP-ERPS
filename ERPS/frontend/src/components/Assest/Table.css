@@ -1,27 +1,27 @@
-table { 
+.Btabel{ 
 	width: 1000px; 
 	border-collapse: collapse; 
 	margin:50px auto;
 	}
 
 /* Zebra striping */
-tr:nth-of-type(odd) { 
+.Tr2:nth-of-type(odd) { 
 	background: #eee; 
 	}
 
-th { 
+	.The1 { 
 	background: #016fc9; 
 	color: white; 
 	font-weight: bold; 
 	}
 
-td, th { 
+	.td1, .The1 { 
 	padding: 10px; 
 	border: 1px solid #ccc; 
 	text-align: left; 
 	font-size: 18px;
 	}
-	td{
+	.td1{
 		font-weight: 500;
 	}
 
@@ -30,25 +30,25 @@ td, th {
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
-	table { 
+	.Btabel { 
 	  	width: 100%; 
 	}
 
 	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
+	.Btabel, thead, tbody, .The1, .td1, .Tr1 { 
 		display: block; 
 	}
-	
+
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	thead .Tr1 { 
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 	
-	tr { border: 1px solid #ccc; }
+	.Tr1 { border: 1px solid #ccc; }
 	
-	td { 
+	.td1 { 
 		/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #eee; 
@@ -57,7 +57,7 @@ only screen and (max-width: 760px),
 	
 	}
 
-	td:before { 
+	.td1:before { 
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
@@ -76,7 +76,7 @@ only screen and (max-width: 760px),
 
 }
 
-h1{
+.Th1{
 	color: #000;
 	float: left;
 	font-size: xx-large;
