@@ -20,7 +20,7 @@ export default function EditFoodItem() {
 
         const getItem = () => {
 
-            axios.get(`http://localhost:3000/api/fooditem/${params.id}`, {
+            axios.get(`http://localhost:4000/api/fooditem/${params.id}`, {
             })
                 .then((res) => {
                     console.log(params.id)
@@ -48,7 +48,7 @@ export default function EditFoodItem() {
             price,
             description,
         }
-        axios.put("http://localhost:3000/api/fooditem/" + id, newItem).then(() => {
+        axios.put("http://localhost:4000/api/fooditem/" + id, newItem).then(() => {
 
             alert(" Edited Successfully");
             window.location.reload();
@@ -136,7 +136,7 @@ export default function EditFoodItem() {
                                         ></textarea>
                                     </div>
 
-                                    <a href='/addfooditem'>
+                                    <a href='/admin/addfooditem'>
 
                                         <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">SUBMIT</button>
                                     </a>
@@ -150,7 +150,7 @@ export default function EditFoodItem() {
                 </center>
                 <br></br>
 
-                <a href='/breakfastitems'>
+                <a href='/admin/breakfastitems'>
                     <br></br>
 
                     <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-[#4F310E] dark:hover:bg-[#696969] dark:focus:ring-gray-700 dark:border-gray-700">BACK</button>

@@ -16,7 +16,7 @@ export default function ViewMenu() {
 
         function getFoodItem() {
 
-            axios.get("http://localhost:3000/api/cart/").then((res) => {
+            axios.get("http://localhost:4000/api/cart/").then((res) => {
                 console.log(res.data);
                 setCart(res.data);
                 let k = res.data.length;
@@ -39,7 +39,7 @@ export default function ViewMenu() {
     }, []);
     //delete
     function deleteItem(_id) {
-        axios.delete("http://localhost:3000/api/cart/" + _id).then((res) => {
+        axios.delete("http://localhost:4000/api/cart/" + _id).then((res) => {
             alert("Item deleted successfully");
             window.location.reload();
 

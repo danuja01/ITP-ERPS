@@ -16,7 +16,7 @@ export default function Dinner() {
 
         function getFoodItem() {
 
-            axios.get("http://localhost:3000/api/fooditem/").then((res) => {
+            axios.get("http://localhost:4000/api/fooditem/").then((res) => {
                 console.log(res.data);
                 setFoodItem(res.data);
 
@@ -32,7 +32,7 @@ export default function Dinner() {
 
         //delete
         function deleteItem(_id){
-            axios.delete("http://localhost:3000/api/fooditem/"+_id).then((res) =>{
+            axios.delete("http://localhost:4000/api/fooditem/"+_id).then((res) =>{
                 alert("Item deleted successfully");
                 window.location.reload();
 
@@ -97,7 +97,7 @@ export default function Dinner() {
 
                                         </div>
                                     </div>
-                                    <a href='/addfooditem'>
+                                    <a href='/admin/addfooditem'>
 
                                    
                                     <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">ADD Item</button>
@@ -209,7 +209,7 @@ export default function Dinner() {
                                                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                         <a
                                                             className="text-green-500 hover:text-green-700"
-                                                            href={`/editfooditem/${FoodItem._id}`}
+                                                            href={`/admin/editfooditem/${FoodItem._id}`}
                                                             >
                                                             Edit
                                                         </a>

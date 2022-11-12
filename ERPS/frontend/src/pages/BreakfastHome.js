@@ -20,7 +20,7 @@ export default function BreakfastHome() {
 
         }
 
-        axios.post("http://localhost:3000/api/cart/", newUser).then(() => {
+        axios.post("http://localhost:4000/api/cart/", newUser).then(() => {
             ("User added")
             setName('');
             setprice('');
@@ -38,7 +38,7 @@ export default function BreakfastHome() {
 
         function getFoodItem() {
 
-            axios.get("http://localhost:3000/api/fooditem/").then((res) => {
+            axios.get("http://localhost:4000/api/fooditem/").then((res) => {
                 console.log(res.data);
                 setFoodItem(res.data);
 

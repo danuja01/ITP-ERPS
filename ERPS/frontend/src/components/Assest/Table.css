@@ -1,11 +1,11 @@
-table { 
+ /*table { 
 	width: 1000px; 
 	border-collapse: collapse; 
 	margin:50px auto;
 	}
 
 /* Zebra striping */
-tr:nth-of-type(odd) { 
+/*tr:nth-of-type(odd) { 
 	background: #eee; 
 	}
 
@@ -35,12 +35,12 @@ only screen and (max-width: 760px),
 	}
 
 	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
+	/*table, thead, tbody, th, td, tr { 
 		display: block; 
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	/*thead tr { 
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
@@ -50,7 +50,7 @@ only screen and (max-width: 760px),
 	
 	td { 
 		/* Behave  like a "row" */
-		border: none;
+		/*border: none;
 		border-bottom: 1px solid #eee; 
 		position: relative;
 		padding-left: 50%; 
@@ -59,15 +59,15 @@ only screen and (max-width: 760px),
 
 	td:before { 
 		/* Now like a table header */
-		position: absolute;
+		/*position: absolute;
 		/* Top/left values mimic padding */
-		top: 6px;
+		/*top: 6px;
 		left: 6px;
 		width: 45%; 
 		padding-right: 10px; 
 		white-space: nowrap;
 		/* Label the data */
-		content: attr(data-column);
+	/*	content: attr(data-column);
 
 		color: #000;
 		font-weight: bold;
@@ -140,6 +140,7 @@ h1{
   .button-3:active {
 	background-color: #0a3d19;
 	box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-  }
+  } 
+   */
   
   
