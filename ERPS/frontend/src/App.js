@@ -44,6 +44,9 @@ import LunchHome from './pages/LunchHome';
 import DinnertHome from './pages/DinnerHome';
 import ViewMenu from './pages/ViewMenu';
 import Cart from './pages/Cart';
+import AddItem from './pages/AddItem';
+import AllItems from './pages/AllItems';
+import EditItem from './pages/UpdateItem';
 
 function App() {
   const { admin } = useAuthContext();
@@ -122,6 +125,11 @@ function App() {
           <Route path='/DinnertHome' element={<DinnertHome />} />
           <Route path='/ViewMenu' element={<ViewMenu />} />
           <Route path='/cart' element={<Cart />} />
+
+          {/* Inventory */}
+          <Route exact path='/admin/allItems' element={<AllItems />} />
+          <Route exact path='/admin/addItem' element={<AddItem />} />
+          <Route exact path='/admin/updateItem' element={<EditItem />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />
