@@ -12,7 +12,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 8 - IT20633868 Jataweera J.M.M.G (it20633868)
 
 #### Brief Description of Project - 
-#### Technologies used - 
+#### Technologies used -  React.js, Node.js, Express, MongoDB, Mongoose, TailwindCSS
 
 Note - The student's github account should be given in brackets e.g. (asiriRepos), this ideally should be your student id 
 
