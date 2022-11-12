@@ -3,6 +3,7 @@ import Dashboard from './pages/Dashboard';
 import Coursem from './pages/Coursem';
 import Addcourse from './pages/Addcourse';
 import Managecoursem from './pages/Managecoursem';
+import UpdateCoursem from './pages/UpdateCoursem';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/coursem' element={<Coursem />} />
           <Route path='/admin/addcourse' element={<Addcourse />} />
           <Route path='/admin/Managecoursem' element={<Managecoursem />} />
+          <Route path='/admin/updateCourse/:id' element={<UpdateCoursem />} />
         </Routes>
       </BrowserRouter>
     </div>
