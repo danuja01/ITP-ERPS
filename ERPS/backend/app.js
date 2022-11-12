@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 //const courseMaterialsRoutes = require('./routes/courseMaterials.routes.js');
-var cors = require('cors');
-
 const degreesRoutes = require('./routes/degrees.routes.js');
 const paymentsRoutes = require('./routes/payments.routes.js');
 const cmaterialsRoutes = require('./routes/courseMaterials.routes.js');
