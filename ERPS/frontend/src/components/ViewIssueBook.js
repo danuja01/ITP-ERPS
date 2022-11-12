@@ -103,7 +103,7 @@ export default function IssueBooks(){
     <div>
     </div>
 
-    <h1>Issued Books</h1>
+    <h1 className='Th1' >Issued Books</h1>
 
 
 
@@ -118,15 +118,15 @@ export default function IssueBooks(){
      <br/><br/>  <br/>
                 
 
-                    <table>
+                    <table className='Btabel' >
                 
-                    <tr>
-                        <th> ISBN </th>
-                        <th> Book Name  </th>
-                        <th> Student Id </th>
-                        <th> Student Name  </th>
-                        <th className='date'> Date  </th>
-                        <th> Return  </th>
+                    <tr className='Tr1'>
+                        <th className='The1'> ISBN </th>
+                        <th className='The1'> Book Name  </th>
+                        <th className='The1'> Student Id </th>
+                        <th className='The1'> Student Name  </th>
+                        <th className='The1'> Date  </th>
+                        <th className='The1'> Return  </th>
                         
                         </tr>
                         {                    books.filter(e=>
@@ -139,13 +139,13 @@ export default function IssueBooks(){
                                             )
                         .map(book => ( 
                        
-                        <tr>
-                        <td>{book.ISBN_Number}</td>
-                        <td>{book.Book_Name}</td>
-                        <td>{book.Student_ID}</td>
-                        <td>{book.Student_Name}</td>
-                        <td className='date'>{book.Date}</td>
-                        <td>  <button className="button-3 " onClick={() => {deleteDataC(book)}}>Return</button> </td> 
+                        <tr className='Tr2'>
+                        <td  className='td1'>{book.ISBN_Number}</td>
+                        <td  className='td1'>{book.Book_Name}</td>
+                        <td  className='td1'>{book.Student_ID}</td>
+                        <td  className='td1'>{book.Student_Name}</td>
+                        <td  className='td1'>{book.Date}</td>
+                        <td  className='td1'>  <button className="button-3 " onClick={() => {deleteDataC(book)}}>Return</button> </td> 
                         </tr>   
 
                         ))}
