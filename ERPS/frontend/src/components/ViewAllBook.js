@@ -115,21 +115,21 @@ export default function AllBook() {
           </ul>
           <div></div>
 
-          <h1>All Books</h1>
+          <h1 className='Th1' >All Books</h1>
 
           <br />
           <br />
           <br />
-          <table>
-            <tr>
-              <th> ISBN Number </th>
-              <th> Book Name </th>
-              <th> Author Name </th>
-              <th> Location </th>
-              <th> Copies</th>
-              <th> Update </th>
-              <th> Delete </th>
-              <th> Issue Book </th>
+          <table className='Btabel'>
+            <tr className='Tr1'>
+              <th className='The1'> ISBN Number </th>
+              <th className='The1'> Book Name </th>
+              <th className='The1'> Author Name </th>
+              <th className='The1'> Location </th>
+              <th className='The1'> Copies</th>
+              <th className='The1'> Update </th>
+              <th className='The1'> Delete </th>
+              <th className='The1'> Issue Book </th>
             </tr>
 
             {books
@@ -143,19 +143,19 @@ export default function AllBook() {
               )
 
               .map((e, i) => (
-                <tr>
-                  <td>{e.ISBN_Number}</td>
-                  <td>{e.Book_Name}</td>
-                  <td>{e.Author_Name}</td>
-                  <td>{e.Location}</td>
-                  <td>{e.Copies}</td>
-                  <td>
+                <tr className='Tr2'>
+                  <td className='td1'>{e.ISBN_Number}</td>
+                  <td className='td1'>{e.Book_Name}</td>
+                  <td className='td1'>{e.Author_Name}</td>
+                  <td className='td1'>{e.Location}</td>
+                  <td className='td1'>{e.Copies}</td>
+                  <td className='td1'>
                     {' '}
                     <Link to={'/update/' + e._id} className='button-3 '>
                       Update
                     </Link>{' '}
                   </td>
-                  <td>
+                  <td className='td1'>
                     {' '}
                     <button
                       className='button-3 '
@@ -166,7 +166,7 @@ export default function AllBook() {
                       Delete
                     </button>
                   </td>
-                  <td>
+                  <td className='td1'>
                     {' '}
                     <Link to={'/issue/' + e._id} className='button-3 '>
                       Issue Book

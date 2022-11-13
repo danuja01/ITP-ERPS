@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import Coursem from './pages/Coursem';
 import Addcourse from './pages/Addcourse';
 import Managecoursem from './pages/Managecoursem';
+import UpdateCoursem from './pages/UpdateCoursem';
 import Degrees from './pages/Degrees';
 import AddDegree from './pages/AddDegree';
 import Degree from './pages/Degree';
@@ -43,6 +44,9 @@ import LunchHome from './pages/LunchHome';
 import DinnertHome from './pages/DinnerHome';
 import ViewMenu from './pages/ViewMenu';
 import Cart from './pages/Cart';
+import AddItem from './pages/AddItem';
+import AllItems from './pages/AllItems';
+import EditItem from './pages/UpdateItem';
 
 function App() {
   const { admin } = useAuthContext();
@@ -86,6 +90,7 @@ function App() {
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/addcourse' element={<Addcourse />} />
           <Route path='/admin/Managecoursem' element={<Managecoursem />} />
+          <Route path='/admin/updateCourse/:id' element={<UpdateCoursem />} />
 
           {/* lib */}
           <Route path='/libHome' element={<LibHome />} />
@@ -121,6 +126,11 @@ function App() {
           <Route path='/DinnertHome' element={<DinnertHome />} />
           <Route path='/ViewMenu' element={<ViewMenu />} />
           <Route path='/cart' element={<Cart />} />
+
+          {/* Inventory */}
+          <Route exact path='/admin/allItems' element={<AllItems />} />
+          <Route exact path='/admin/addItem' element={<AddItem />} />
+          <Route exact path='/admin/updateItem' element={<EditItem />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />
