@@ -11,6 +11,8 @@ const appliedStudentsRoutes = require('./routes/applied.students.routes.js');
 const selectedStudents = require('./routes/slected.students.routes.js');
 const adminRoutes = require('./routes/admin.routes.js');
 const foodsRoutes = require('./routes/fooditem.routes.js');
+const employeeRouter = require('./routes/employee.routes.js');
+const attendanceRoute = require('./routes/attendance.routes.js');
 const itemRouter = require('./routes/items.routes.js');
 const CartsRoutes = require('./routes/Cart.routes.js');
 
@@ -37,6 +39,8 @@ app.use('/api/admin', adminRoutes);
 //degrees
 app.use('/api/degrees', degreesRoutes);
 app.use('/api/fooditem', foodsRoutes);
+app.use('/employee', employeeRouter);
+app.use('/attendance', attendanceRoute);
 
 //inventory
 app.use('/item', itemRouter);

@@ -11,6 +11,7 @@ import { MdInventory } from 'react-icons/md';
 import { IoFastFood } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
 import { BiMessageAdd } from 'react-icons/bi';
+import { MdWork } from 'react-icons/md';
 import { FaBookOpen } from 'react-icons/fa';
 import { BiBookAlt } from 'react-icons/bi';
 import { FaUsersCog } from 'react-icons/fa';
@@ -32,6 +33,12 @@ const AdminNav = () => {
       name: 'Dashboard',
       link: '/admin/dashboard',
       icon: MdOutlineDashboard,
+      display: '',
+    },
+    {
+      name: 'Employee',
+      link: '/admin/all-employee',
+      icon: MdWork,
       display: '',
     },
     {

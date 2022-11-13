@@ -47,6 +47,13 @@ import Cart from './pages/Cart';
 import AddItem from './pages/AddItem';
 import AllItems from './pages/AllItems';
 import EditItem from './pages/UpdateItem';
+import MarkAttendance from './components/AddAttendance';
+import AddEmployee from './components/AddEmployee';
+import AllAttendance from './components/AllAttendance';
+import AllEmployee from './components/AllEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
+import Report from './components/Report';
+import Report2 from './components/Report2';
 
 function App() {
   const { admin } = useAuthContext();
@@ -55,6 +62,8 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path='/admin/dashboard' element={<Dashboard />} />
+
           {/* home */}
           <Route path='/' element={<Home />} />
 
@@ -131,6 +140,18 @@ function App() {
           <Route exact path='/admin/allItems' element={<AllItems />} />
           <Route exact path='/admin/addItem' element={<AddItem />} />
           <Route exact path='/admin/updateItem' element={<EditItem />} />
+
+          {/* Employee */}
+          <Route path='/admin/mark-attendance' element={<MarkAttendance />} />
+          <Route path='/admin/add-employee' element={<AddEmployee />} />
+          <Route path='/admin/all-attendance' element={<AllAttendance />} />
+          <Route path='/admin/all-employee' element={<AllEmployee />} />
+          <Route
+            path='admin/update-employee/:id'
+            element={<UpdateEmployee />}
+          />
+          <Route path='/admin/Report' element={<Report />} />
+          <Route path='/admin/Report2' element={<Report2 />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />
