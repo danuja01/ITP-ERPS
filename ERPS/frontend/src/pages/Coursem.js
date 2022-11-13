@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import CoursemCard from '../components/CoursemCard';
+import Header from '../components/MainHeaderNav';
+import Footer from '../components/MainFooter';
 
 const Coursem = () => {
   const [cmaterials, setCmaterials] = useState(null);
@@ -19,8 +21,9 @@ const Coursem = () => {
   }, []);
 
   return (
-    <section className=''>
-      <div className='mx-32 my-12'>
+    <div className=''>
+      <Header />
+      <div className='mx-32 my-12 mb-64'>
         <div className=''>
           <input
             type='text'
@@ -44,7 +47,8 @@ const Coursem = () => {
             })
             .map((cm) => <CoursemCard cmaterial={cm} />)}
       </div>
-    </section>
+      <Footer className='' />
+    </div>
   );
 };
 

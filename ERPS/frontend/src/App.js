@@ -56,7 +56,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* home */}
-          <Route path='/Home' element={<Home />} />
+          <Route path='/' element={<Home />} />
 
           {/* USER PATHS  */}
           <Route path='/coursem' element={<Coursem />} />
@@ -98,7 +98,7 @@ function App() {
           <Route path='/retrive' element={<AllBook />} />
           <Route path='/issue/:id' element={<IssueBook />} />
           <Route path='/retriveissue' element={<ViewIssueBook />} />
-        {/*  <Route path='/update/:id' element={<UpdateBook />} />*/} 
+          {/*  <Route path='/update/:id' element={<UpdateBook />} />*/}
 
           {/* Students Applications admin routes */}
           <Route

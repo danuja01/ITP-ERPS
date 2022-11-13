@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import validUrl from 'valid-url';
 
 const UpdateCourseForm = () => {
   const { id } = useParams();
@@ -28,20 +29,25 @@ const UpdateCourseForm = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    const courseDetails = {
-      module_name,
-      url,
-      duration,
-      lecturer,
-      notice,
-    };
 
-    axios
-      .patch(`http://localhost:4000/api/cmaterials/${id}`, courseDetails)
-      .then(() => {
-        console.log('degree updated');
-        navigate(`/admin/Managecoursem`);
-      });
+    if (validUrl.isUri(url)) {
+      const courseDetails = {
+        module_name,
+        url,
+        duration,
+        lecturer,
+        notice,
+      };
+
+      axios
+        .patch(`http://localhost:4000/api/cmaterials/${id}`, courseDetails)
+        .then(() => {
+          console.log('degree updated');
+          navigate(`/admin/Managecoursem`);
+        });
+    } else {
+      alert('plese enter a valid URL!');
+    }
   };
 
   return (

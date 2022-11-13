@@ -37,7 +37,7 @@ export default function AddBook() {
 
   return (
     <div>
-      <div className='libimg'>
+      <div id='lib' className='libimg'>
         <section className='flex gap-6'>
           <AdminNav />
 

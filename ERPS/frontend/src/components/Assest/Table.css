@@ -55,7 +55,7 @@
 
   .td1 {
     /* Behave  like a "row" */
-    /*border: none;*/
+    border: none;
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
@@ -63,15 +63,15 @@
 
   .td1:before {
     /* Now like a table header */
-    /*position: absolute;
-		/* Top/left values mimic padding */
-    /*top: 6px;*/
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
     left: 6px;
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
     /* Label the data */
-    /*	content: attr(data-column);*/
+    content: attr(data-column);
 
     color: #000;
     font-weight: bold;

@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 
 const CourceCard = ({ cmaterial }) => {
   const handleDelete = () => {
-    console.log(`http://localhost:4000/api/cmaterials/${cmaterial._id}`);
-    fetch(`http://localhost:4000/api/cmaterials/${cmaterial._id}`, {
-      method: 'DELETE',
-    })
-      .then(window.location.reload())
-      .catch((err) => console.log(err));
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Are you sure you want to delete?')) {
+      console.log(`http://localhost:4000/api/cmaterials/${cmaterial._id}`);
+      fetch(`http://localhost:4000/api/cmaterials/${cmaterial._id}`, {
+        method: 'DELETE',
+      }).then(window.location.reload());
+    }
   };
 
   return (

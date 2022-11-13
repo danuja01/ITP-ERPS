@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useAuthContext } from '../hooks/useAuthContext';
 
 // icons
 import { MdOutlineDashboard } from 'react-icons/md';
@@ -15,22 +17,66 @@ import { FaUsersCog } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 const AdminNav = () => {
+  const { admin } = useAuthContext();
+  const [hidden, setHidden] = useState(true);
+
+  useEffect(() => {
+    console.log(admin.email);
+    if (admin.email === 'admin@admin.com') {
+      setHidden(false);
+    }
+  }, []);
+
   const menus = [
-    { name: 'Dashboard', link: '/admin/dashboard', icon: MdOutlineDashboard },
-    { name: 'Degrees', link: '/admin/degrees', icon: GiGraduateCap },
+    {
+      name: 'Dashboard',
+      link: '/admin/dashboard',
+      icon: MdOutlineDashboard,
+      display: '',
+    },
+    {
+      name: 'Degrees',
+      link: '/admin/degrees',
+      icon: GiGraduateCap,
+      display: '',
+    },
     {
       name: 'Course Materials',
       link: '/admin/Managecoursem',
       icon: BiBookAlt,
+      display: '',
     },
-    { name: 'Students', link: '/admin/students', icon: IoIosPeople },
-    { name: 'Applications', link: '/admin/applications', icon: BiMessageAdd },
-    { name: 'Inventory', link: '/admin/inventory', icon: MdInventory },
-    { name: 'Food Items', link: '/admin/foods', icon: IoFastFood },
-    { name: 'Payments', link: '/admin/payments', icon: MdOutlinePayment },
-    { name: 'Libarary', link: '/libHome', icon: FaBookOpen },
-
-    { name: 'Settings', link: '/admin/signup', icon: FaUsersCog },
+    {
+      name: 'Applications',
+      link: '/admin/applications',
+      icon: BiMessageAdd,
+      display: '',
+    },
+    {
+      name: 'Inventory',
+      link: '/admin/allItems',
+      icon: MdInventory,
+      display: '',
+    },
+    { name: 'Food Items', link: '/admin/foods', icon: IoFastFood, display: '' },
+    {
+      name: 'Payments',
+      link: '/admin/payments',
+      icon: MdOutlinePayment,
+      display: '',
+    },
+    {
+      name: 'Libarary',
+      link: '/libHome',
+      icon: FaBookOpen,
+      display: '',
+    },
+    {
+      name: 'Settings',
+      link: '/admin/signup',
+      icon: FaUsersCog,
+      display: hidden ? 'hidden' : '',
+    },
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -53,7 +99,9 @@ const AdminNav = () => {
             key={i}
             className={` ${
               menu?.margin && 'mt-5'
-            } group flex items-center text-sm pr-7 gap-.5 font-medium p-2 hover:bg-brown-200 rounded-md`}
+            } group flex items-center text-sm pr-7 gap-.5 font-medium p-2 hover:bg-brown-200 rounded-md ${
+              menu?.display
+            }`}
           >
             <div>{React.createElement(menu?.icon, { size: '20' })}</div>
             <h2

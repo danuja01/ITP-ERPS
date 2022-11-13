@@ -49,7 +49,7 @@ function UpdateBook() {
   }
 
   return (
-    <div className='libimg'>
+    <div id='lib' className='libimg'>
       <section className='flex gap-6'>
         <AdminNav />
 

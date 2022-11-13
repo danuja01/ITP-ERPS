@@ -79,7 +79,7 @@ export default function AllBook() {
   }
 
   return (
-    <div className='whitebc'>
+    <div id='lib' className='whitebc'>
       <section className='flex gap-6'>
         <AdminNav />
 
@@ -115,7 +115,7 @@ export default function AllBook() {
           </ul>
           <div></div>
 
-          <h1 className='Th1' >All Books</h1>
+          <h1 className='Th1'>All Books</h1>
 
           <br />
           <br />

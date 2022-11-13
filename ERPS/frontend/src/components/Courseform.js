@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import validUrl from 'valid-url';
 
 const CourseForm = () => {
   const [module_name, setMname] = useState('');
@@ -12,21 +13,26 @@ const CourseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const courseDetails = {
-      module_name,
-      url,
-      duration,
-      lecturer,
-      notice,
-    };
 
-    fetch('http://localhost:4000/api/cmaterials', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(courseDetails),
-    }).then(() => {
-      navigate('/admin/Managecoursem');
-    });
+    if (validUrl.isUri(url)) {
+      const courseDetails = {
+        module_name,
+        url,
+        duration,
+        lecturer,
+        notice,
+      };
+
+      fetch('http://localhost:4000/api/cmaterials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(courseDetails),
+      }).then(() => {
+        navigate('/admin/Managecoursem');
+      });
+    } else {
+      alert('plese enter a valid URL!');
+    }
   };
 
   return (
