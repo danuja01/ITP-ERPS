@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 
 const UpdateCourseForm = () => {
   const { id } = useParams();
@@ -14,7 +14,7 @@ const UpdateCourseForm = () => {
 
   const navigate = useNavigate();
 
-  const { data } = useFetch('/api/cmaterials/' + id);
+  const { data } = useFetch('http://localhost:4000/api/cmaterials/' + id);
 
   useEffect(() => {
     if (data) {
