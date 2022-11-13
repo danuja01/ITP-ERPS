@@ -5,7 +5,7 @@ import V10 from '../images/V10.jpg';
 import { Link } from 'react-router-dom';
 import AdminName from './AdminName';
 import AdminNav from './AdminNav';
-import Header from './header';
+import Header from './Header';
 
 export default function AllEmployee() {
   const [employees, setEmployees] = useState([]);
@@ -50,28 +50,40 @@ export default function AllEmployee() {
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <Header/>
+        <Header />
         <div style={{ backgroundImage: `url(${V10})`, backgroundSize: '100%' }}>
           {' '}
           <br></br>
-          <table width={"140%"}><tr>
-          <td><Link to='/admin/Report'>
-                <button style={{align:'right', margin:'1%'}}  type='button2' class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out">
-                  {' '}
-                  Generate Employees Report{' '}
-                </button>
-              </Link></td>
+          <table width={'140%'}>
+            <tr>
+              <td>
+                <Link to='/admin/Report'>
+                  <button
+                    style={{ align: 'right', margin: '1%' }}
+                    type='button2'
+                    class='inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out'
+                  >
+                    {' '}
+                    Generate Employees Report{' '}
+                  </button>
+                </Link>
+              </td>
 
-          <td><div style={{ width: '80%' }}>
-            <input
-              onChange={searchEmployee}
-              placeholder='Search.....'
-              style={{ float: 'left' }}
-            />
-          </div>{' '}</td>
-          <br></br>
-          <br></br></tr></table>
-          <center><br></br>
+              <td>
+                <div style={{ width: '80%' }}>
+                  <input
+                    onChange={searchEmployee}
+                    placeholder='Search.....'
+                    style={{ float: 'left' }}
+                  />
+                </div>{' '}
+              </td>
+              <br></br>
+              <br></br>
+            </tr>
+          </table>
+          <center>
+            <br></br>
             <h2 className='text-5xl'>All Employees</h2>
           </center>
           <br></br>
@@ -137,12 +149,12 @@ export default function AllEmployee() {
                 <center>
                   <Link
                     to={'/admin/update-employee/' + empolyee._id}
-                    class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out"
+                    class='inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out'
                   >
                     Update
                   </Link>
                   <button
-                    class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    class='inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'
                     style={{
                       padding: 10,
                       margin: 10,
@@ -158,9 +170,7 @@ export default function AllEmployee() {
               </div>
             ))}
           <div>
-            <center>
-              
-            </center>
+            <center></center>
           </div>
           <br></br>
           <br></br>

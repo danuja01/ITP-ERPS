@@ -4,7 +4,7 @@ import V12 from '../images/V12.jpg';
 import { Link } from 'react-router-dom';
 import AdminName from './AdminName';
 import AdminNav from './AdminNav';
-import Header from './header';
+import Header from './Header';
 
 export default function AllAttendance() {
   const [attendances, setAttendance] = useState([]);
@@ -51,27 +51,44 @@ export default function AllAttendance() {
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <Header/>
+        <Header />
 
         <div
-          style={{ backgroundImage: `url(${V12})`, backgroundSize: 'container' }}
+          style={{
+            backgroundImage: `url(${V12})`,
+            backgroundSize: 'container',
+          }}
         >
           {' '}
           <br></br>
-          <table width={"170%"}> <tr>
-          <td><Link to='/admin/Report2'>
-              <button type='button2' style={{margin:"1%"}} class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out">
-                {' '}
-                Generate Report
-              </button>
-            </Link></td>
-          <td><div style={{ width: '80%' }}>
-            <input
-              onChange={searchIncome}
-              placeholder='Search.....'
-              style={{ float: 'left' }}
-            /><br></br><br></br>
-          </div></td></tr></table>
+          <table width={'170%'}>
+            {' '}
+            <tr>
+              <td>
+                <Link to='/admin/Report2'>
+                  <button
+                    type='button2'
+                    style={{ margin: '1%' }}
+                    class='inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out'
+                  >
+                    {' '}
+                    Generate Report
+                  </button>
+                </Link>
+              </td>
+              <td>
+                <div style={{ width: '80%' }}>
+                  <input
+                    onChange={searchIncome}
+                    placeholder='Search.....'
+                    style={{ float: 'left' }}
+                  />
+                  <br></br>
+                  <br></br>
+                </div>
+              </td>
+            </tr>
+          </table>
           <center>
             <h2 className='text-2xl'>ALL ATTENDANCE </h2>
           </center>
@@ -92,7 +109,7 @@ export default function AllAttendance() {
                       <td>{attendance.date}</td>
                       <td>
                         <button
-                          class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                          class='inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'
                           style={{
                             padding: 10,
                             margin: 10,
@@ -111,10 +128,7 @@ export default function AllAttendance() {
                 <br></br>
               </div>
             ))}
-          <center>
-            
-          </center>{' '}
-          <br></br>
+          <center></center> <br></br>
           <br></br>
         </div>
       </div>

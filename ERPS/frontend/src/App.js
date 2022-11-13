@@ -54,6 +54,8 @@ import AllEmployee from './components/AllEmployee';
 import UpdateEmployee from './components/UpdateEmployee';
 import Report from './components/Report';
 import Report2 from './components/Report2';
+import AllAttednaceReport from './components/AllAttednaceReport';
+import AllEmployeeReport from './components/AllEmployeeReport';
 
 function App() {
   const { admin } = useAuthContext();
@@ -150,8 +152,8 @@ function App() {
             path='admin/update-employee/:id'
             element={<UpdateEmployee />}
           />
-          <Route path='/admin/Report' element={<Report />} />
-          <Route path='/admin/Report2' element={<Report2 />} />
+          <Route path='/admin/Report' element={<AllEmployeeReport />} />
+          <Route path='/admin/Report2' element={<AllAttednaceReport />} />
 
           {/* Test path */}
           <Route path='/admin/test' element={<Test />} />

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import AdminNav from './AdminNav';
 import AdminName from './AdminName';
-import Header from './header';
+import Header from './Header';
 
 import '../assets/form.css';
 
@@ -49,9 +49,12 @@ export default function AddEmployee() {
       <AdminNav />
       <div className='w-full mr-12'>
         <AdminName />
-        <Header/>
+        <Header />
         <div
-          style={{ backgroundImage: `url(${V13})`, backgroundSize: 'container' }}
+          style={{
+            backgroundImage: `url(${V13})`,
+            backgroundSize: 'container',
+          }}
         >
           <br></br>
           <div className='form-style-5'>
@@ -180,7 +183,10 @@ export default function AddEmployee() {
               </div>
 
               <center>
-                <button type='submit' class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">
+                <button
+                  type='submit'
+                  class='inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out'
+                >
                   Submit
                 </button>
               </center>
