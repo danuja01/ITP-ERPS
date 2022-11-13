@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import Coursem from './pages/Coursem';
 import Addcourse from './pages/Addcourse';
 import Managecoursem from './pages/Managecoursem';
+import UpdateCoursem from './pages/UpdateCoursem';
 import Degrees from './pages/Degrees';
 import AddDegree from './pages/AddDegree';
 import Degree from './pages/Degree';
@@ -90,6 +91,7 @@ function App() {
           <Route path='/admin/dashboard' element={<Dashboard />} />
           <Route path='/admin/addcourse' element={<Addcourse />} />
           <Route path='/admin/Managecoursem' element={<Managecoursem />} />
+          <Route path='/admin/updateCourse/:id' element={<UpdateCoursem />} />
 
           {/* lib */}
           <Route path='/libHome' element={<LibHome />} />

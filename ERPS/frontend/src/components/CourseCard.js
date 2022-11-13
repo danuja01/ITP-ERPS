@@ -21,7 +21,7 @@ const CourceCard = ({ cmaterial }) => {
       </p>
       <div className=' grid grid-cols-3'>
         <Link
-          to={`/admin/degree/${cmaterial._id}`}
+          to={`/admin/updateCourse/${cmaterial._id}`}
           class=' w-28 py-2.5 px-3 text-sm font-medium text-center text-white bg-brown-100 rounded-lg hover:bg-brown-200 focus:ring-4 focus:outline-none focus:ring-brown-300 '
         >
           UPDATE
