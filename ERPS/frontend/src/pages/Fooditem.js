@@ -9,6 +9,8 @@ export default function FoodItem() {
             <AdminName />
 
                 <br></br>
+                <br></br>
+                <br></br>
                 <table>
                     <tr>
                    <td>
@@ -30,7 +32,7 @@ export default function FoodItem() {
                 <table>
                     <tr>
                         <td>
-                            <a href="/breakfastitems" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
+                            <a href="/admin/breakfastitems" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
 
 
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">BreakfastItems</h5>
@@ -41,7 +43,7 @@ export default function FoodItem() {
                         </td>
 
                         <td>
-                            <a href="/lunchitems" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
+                            <a href="/admin/lunchitems" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
 
 
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Lunch Items</h5>
@@ -52,7 +54,7 @@ export default function FoodItem() {
                         </td>
 
                         <td>
-                            <a href="/Dinner" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
+                            <a href="/admin/Dinner" class="block p-6 max-w-sm bg-[#f9f4ee] rounded-lg border dark:border-gray-700 shadow-xl" style={{ width: "450px" }}>
 
 
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Dinner Items</h5>
@@ -67,7 +69,13 @@ export default function FoodItem() {
 
                 </table>
                 <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
+
+                
+                    <br></br>
 
         <h1 class="w3-sans-serif">Latest modifications</h1>
                 <ol class="relative border-l border-gray-200 dark:border-gray-700">                  

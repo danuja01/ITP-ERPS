@@ -30,9 +30,8 @@ import AllBook from './components/ViewAllBook';
 import LibHome from './components/Home';
 import IssueBook from './components/IssueBook';
 import ViewIssueBook from './components/ViewIssueBook';
-import UpdateBook from './components/UpdateBook';
-import Home from './pages/Home';
 import FoodItem from './pages/Fooditem';
+import Home from './pages/Home';
 import BreakfastItems from './pages/BreakfastItems';
 import Dinner from './pages/Dinner';
 import Addfooditem from './pages/Addfooditem';
@@ -99,7 +98,7 @@ function App() {
           <Route path='/retrive' element={<AllBook />} />
           <Route path='/issue/:id' element={<IssueBook />} />
           <Route path='/retriveissue' element={<ViewIssueBook />} />
-          <Route path='/update/:id' element={<UpdateBook />} />
+        {/*  <Route path='/update/:id' element={<UpdateBook />} />*/} 
 
           {/* Students Applications admin routes */}
           <Route
@@ -114,12 +113,12 @@ function App() {
           <Route path='/summaryPayment' exact element={<SummaryPayment />} />
 
           {/* Food Items */}
-          <Route path='/foods' element={<FoodItem />} />
-          <Route path='/breakfastitems' element={<BreakfastItems />} />
-          <Route path='/lunchitems' element={<LunchItems />} />
-          <Route path='/Dinner' element={<Dinner />} />
-          <Route path='/addfooditem' element={<Addfooditem />} />
-          <Route path='/editfooditem/:id' element={<Editfooditem />} />
+          <Route path='/admin/foods' element={<FoodItem />} />
+          <Route path='/admin/breakfastitems' element={<BreakfastItems />} />
+          <Route path='/admin/lunchitems' element={<LunchItems />} />
+          <Route path='/admin/Dinner' element={<Dinner />} />
+          <Route path='/admin/addfooditem' element={<Addfooditem />} />
+          <Route path='/admin/editfooditem/:id' element={<Editfooditem />} />
           <Route path='/Foodhomelod' element={<Foodhomelod />} />
           <Route path='/MainFoodHome' element={<MainFoodHome />} />
           <Route path='/BreakfastHome' element={<BreakfastHome />} />
