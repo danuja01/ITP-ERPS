@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import 'tw-elements';
+
 import { DegreeContextProvider } from './Context/DegreeContext';
 import { AuthProvider } from './Context/AuthContext';
 

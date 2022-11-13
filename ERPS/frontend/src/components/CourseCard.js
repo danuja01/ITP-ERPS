@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const CourceCard = ({ cmaterial }) => {
   const handleDelete = () => {
-    console.log(`/api/cmaterials/${cmaterial._id}`);
-    fetch(`/api/cmaterials/${cmaterial._id}`, {
+    console.log(`http://localhost:4000/api/cmaterials/${cmaterial._id}`);
+    fetch(`http://localhost:4000/api/cmaterials/${cmaterial._id}`, {
       method: 'DELETE',
     })
       .then(window.location.reload())
